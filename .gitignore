@@ -39,3 +39,4 @@ sqlite3
 .project
 .DS_Store
 .settings
+/bin/
