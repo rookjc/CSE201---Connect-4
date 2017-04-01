@@ -1,22 +1,103 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.sun.xml.internal.messaging.saaj.soap.GifDataContentHandler;
+
+import sun.net.www.content.image.gif;
+
 public class UserInterface extends JFrame{
+	static final int WIDTH = 800; 
+	static final int HEIGHT = 800; 
 	
 	private InterfacePanel interfacePanel; 
+	private ColorSelectionPage colorSelection; 
+	private GameboardInterface gI;
 	
 	public UserInterface() {
 		super("ConnectFour");
-		interfacePanel = new InterfacePanel(800,800); 
+		interfacePanel = new InterfacePanel(WIDTH,HEIGHT); 
+		colorSelection = new ColorSelectionPage(WIDTH, HEIGHT); 
+		gI = new GameboardInterface(); 
 		add(interfacePanel);
 		// frame set up 
 		
-		setSize(800, 800);
+		setSize(WIDTH, HEIGHT);
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// controller
+		control(); 
+	}
+
+	private void control() {
+		if(interfacePanel != null && colorSelection != null && gI != null) {
+			interfacePanel.getPlayButton().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					interfacePanel.setVisible(false);
+					add(colorSelection); 
+				}
+			});
+		    
+			interfacePanel.getExitButton().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+			
+				colorSelection.getRedButton().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) { 
+						colorSelection.setVisible(false);
+						gI.setVisible(true);
+						//temporary adding gI only , but needs more logical implementation 
+						add(gI);
+					}
+				});
+				
+				colorSelection.getYellowButton().addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						colorSelection.setVisible(false);
+						gI.setVisible(true);
+						//temporary adding gI only , but needs more logical implementation 
+						add(gI);
+					}
+				});
+				
+				// into gameBoard
+				
+					gI.getToolBar().getRestartButton().addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							gI.setVisible(false);
+							colorSelection.setVisible(true);
+						}
+					});
+					
+					// quit button for gameBoard 
+					// tentatively set to quit 
+					
+					gI.getToolBar().getQuitButton().addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							System.exit(0);
+						}
+					});
+					  
+		}
+		 
 	}
 	
 	
