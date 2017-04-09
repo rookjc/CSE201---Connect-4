@@ -9,20 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ToolBar extends JPanel {
-	private JButton button1; 
 	private JLabel title; 
 	private JButton restartButton;
-	private JButton button2;
 	private JButton quitButton;
 	
 	public ToolBar() {
 		setBorder(BorderFactory.createEtchedBorder());
 		
 		//restart button 
-		button1 = new JButton();
-		button1.setBackground(new Color(253,105,105));
-		button1.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
-
 		restartButton = new JButton("Restart");
 		restartButton.setBackground(new Color(253,105,105));
 		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
@@ -31,11 +25,7 @@ public class ToolBar extends JPanel {
 		title = new JLabel("????????");  
 		
 		
-		// quit button 
-		button2 = new JButton(); 
-		button2.setBackground(new Color(249, 255,152));
-		button2.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
-		
+		// quit button
 		quitButton = new JButton("Quit"); 
 		quitButton.setBackground(new Color(249, 255,152));
 		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
@@ -58,7 +48,7 @@ public class ToolBar extends JPanel {
 		gc.fill = GridBagConstraints.NONE;
 		gc.anchor = GridBagConstraints.LINE_START;
 		
-		add(button1, gc);
+		add(restartButton, gc);
 		
 		// title
 		gc.gridx = 1; 
@@ -77,19 +67,19 @@ public class ToolBar extends JPanel {
 		gc.weightx = 0.3; 
 		gc.ipadx = 95;
 		gc.anchor = GridBagConstraints.LINE_END; 
-		add(button2, gc);
+		add(quitButton, gc);
 	}
 
-	public JButton getButton1() {
-		return button1;
+	public JButton getRestartButton() {
+		return restartButton;
 	}
 
 	public JLabel getTitle() {
 		return title;
 	}
 
-	public JButton getButton2() {
-		return button2;
+	public JButton getQuitButton() {
+		return quitButton;
 	}
 	
 }

@@ -79,9 +79,9 @@ public class UserInterface extends JFrame {
 			});
 
 			// into gameBoard
-			JButton restartBtn = gI.getToolBar().getButton1();
+			JButton restartBtn = gI.getToolBar().getRestartButton();
 			if (restartBtn != null && restartBtn.getText().equals("Restart")) {
-				gI.getToolBar().getButton1().addActionListener(new ActionListener() {
+				gI.getToolBar().getRestartButton().addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -93,9 +93,9 @@ public class UserInterface extends JFrame {
 
 			// quit button for gameBoard
 			// tentatively set to quit
-			JButton quitBtn = gI.getToolBar().getButton2();
+			JButton quitBtn = gI.getToolBar().getQuitButton();
 			if (quitBtn != null && quitBtn.getText().equals("Quit")) {
-				gI.getToolBar().getButton2().addActionListener(new ActionListener() {
+				gI.getToolBar().getQuitButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.exit(0);
@@ -123,8 +123,8 @@ public class UserInterface extends JFrame {
 			
 			//Stat's Interface 
 			if(sI != null) {
-				JButton replay = sI.getToolBar().getButton1(); 
-				JButton quit = sI.getToolBar().getButton2(); 
+				JButton replay = sI.getToolBar().getRestartButton(); 
+				JButton quit = sI.getToolBar().getQuitButton(); 
 				
 				replay.addActionListener(new ActionListener() {
 					

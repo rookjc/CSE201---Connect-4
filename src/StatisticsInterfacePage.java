@@ -19,9 +19,9 @@ public class StatisticsInterfacePage extends JPanel{
 		toolBar.getTitle().setText("Result");
 		toolBar.getTitle().setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 50));
 		 
-		toolBar.getButton1().setText("Play Again");
+		toolBar.getRestartButton().setText("Play Again");
 		
-		toolBar.getButton2().setText("Quit");
+		toolBar.getQuitButton().setText("Quit");
 		
 		StatisticsTokenList st = 
 				new StatisticsTokenList("1000", "1000", "1000?", 
