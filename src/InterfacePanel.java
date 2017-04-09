@@ -18,14 +18,14 @@ public class InterfacePanel extends JPanel {
 		mainPageTitle = new JLabel("Connect Four");
 
 		// setup Title
-		mainPageTitle.setFont(new Font("Jokerman", Font.BOLD, 60));
+		mainPageTitle.setFont(new Font("Verdana", Font.BOLD, 60));
 
 		playButton = new RoundButton("Play", new Color(253,105,105));
-		playButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		playButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
 		
 		
 		exitButton = new RoundButton("Exit", new Color(249, 255,152));
-		exitButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		exitButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
 		
 		setBackground(new Color(118, 142, 239));
 		LayoutSetup layOut = new LayoutSetup(mainPageTitle, playButton, exitButton, this); 

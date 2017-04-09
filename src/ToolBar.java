@@ -19,7 +19,7 @@ public class ToolBar extends JPanel {
 		//restart button 
 		restartButton = new JButton("Restart");
 		restartButton.setBackground(new Color(253,105,105));
-		restartButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
 		// label text could change as the game goes 
 		title = new JLabel("????????");  
@@ -28,7 +28,7 @@ public class ToolBar extends JPanel {
 		// quit button 
 		quitButton = new JButton("Quit"); 
 		quitButton.setBackground(new Color(249, 255,152));
-		quitButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
 		layoutComponent();
 	}

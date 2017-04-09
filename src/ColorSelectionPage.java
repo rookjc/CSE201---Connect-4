@@ -18,14 +18,14 @@ public class ColorSelectionPage extends JPanel{
 		mainPageTitle = new JLabel("Pick Your Color");
 
 		// setup Title
-		mainPageTitle.setFont(new Font("Jokerman", Font.BOLD, 60));
+		mainPageTitle.setFont(new Font("Verdana", Font.BOLD, 60));
 
 		redButton = new RoundButton("Red", new Color(253,105,105));
-		redButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		redButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
 		
 		
 		yellowButton = new RoundButton("Yellow", new Color(249, 255,152));
-		yellowButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		yellowButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
 		
 		
 		setBackground(new Color(118, 142, 239));
