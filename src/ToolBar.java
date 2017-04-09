@@ -17,18 +17,30 @@ public class ToolBar extends JPanel {
 		setBorder(BorderFactory.createEtchedBorder());
 		
 		//restart button 
+<<<<<<< HEAD
 		button1 = new JButton();
 		button1.setBackground(new Color(253,105,105));
 		button1.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+=======
+		restartButton = new JButton("Restart");
+		restartButton.setBackground(new Color(253,105,105));
+		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
+>>>>>>> a8f79c6bedeb2559ae0aa47e472714c903a6f6f4
 		
 		// label text could change as the game goes 
 		title = new JLabel("????????");  
 		
 		
 		// quit button 
+<<<<<<< HEAD
 		button2 = new JButton(); 
 		button2.setBackground(new Color(249, 255,152));
 		button2.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+=======
+		quitButton = new JButton("Quit"); 
+		quitButton.setBackground(new Color(249, 255,152));
+		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
+>>>>>>> a8f79c6bedeb2559ae0aa47e472714c903a6f6f4
 		
 		layoutComponent();
 	}

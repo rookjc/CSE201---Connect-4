@@ -1,4 +1,5 @@
 // Represents the current state of the game board, with 42 Pieces and 69 4-in-a-row Slots
+// TODO: make this inherit from Panel
 public class GameBoard {
 	private Piece[][] board;
 	private Slot[] slots;
@@ -14,7 +15,24 @@ public class GameBoard {
 		}
 		
 		this.slots = new Slot[69];
-		// TODO: Generate all the slots
+		int slotNum = 0;
+		// Generate all possible slots into this.slots array
+		for (int row = 0; row < 6; row++) {		// Horizontal
+			for (int col = 0; col < 4; col++)
+				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.HORIZONTAL);
+		}
+		for (int row = 0; row < 3; row++) {		// Vertical
+			for (int col = 0; col < 7; col++)
+				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.VERTICAL);
+		}
+		for (int row = 0; row < 3; row++) {		// Diagonal up
+			for (int col = 0; col < 4; col++)
+				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.DIAGONAL_UP);
+		}
+		for (int row = 3; row < 6; row++) {		// Diagonal down
+			for (int col = 0; col < 4; col++)
+				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.DIAGONAL_DOWN);
+		}
 	}
 	
 	// Revert this GameBoard back to an empty grid
