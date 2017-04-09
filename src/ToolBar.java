@@ -9,26 +9,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ToolBar extends JPanel {
-	private JButton restartButton; 
+	private JButton button1; 
 	private JLabel title; 
-	private JButton quitButton; 
+	private JButton button2; 
 	
 	public ToolBar() {
 		setBorder(BorderFactory.createEtchedBorder());
 		
 		//restart button 
-		restartButton = new JButton("Restart");
-		restartButton.setBackground(new Color(253,105,105));
-		restartButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		button1 = new JButton();
+		button1.setBackground(new Color(253,105,105));
+		button1.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
 		
 		// label text could change as the game goes 
 		title = new JLabel("????????");  
 		
 		
 		// quit button 
-		quitButton = new JButton("Quit"); 
-		quitButton.setBackground(new Color(249, 255,152));
-		quitButton.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
+		button2 = new JButton(); 
+		button2.setBackground(new Color(249, 255,152));
+		button2.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30));
 		
 		layoutComponent();
 	}
@@ -48,7 +48,7 @@ public class ToolBar extends JPanel {
 		gc.fill = GridBagConstraints.NONE;
 		gc.anchor = GridBagConstraints.LINE_START;
 		
-		add(restartButton, gc);
+		add(button1, gc);
 		
 		// title
 		gc.gridx = 1; 
@@ -67,30 +67,19 @@ public class ToolBar extends JPanel {
 		gc.weightx = 0.3; 
 		gc.ipadx = 95;
 		gc.anchor = GridBagConstraints.LINE_END; 
-		add(quitButton, gc);
+		add(button2, gc);
 	}
 
-	public JButton getRestartButton() {
-		return restartButton;
-	}
-
-	public void setRestartButton(JButton restartButton) {
-		this.restartButton = restartButton;
+	public JButton getButton1() {
+		return button1;
 	}
 
 	public JLabel getTitle() {
 		return title;
 	}
 
-	public void setTitle(JLabel title) {
-		this.title = title;
+	public JButton getButton2() {
+		return button2;
 	}
-
-	public JButton getQuitButton() {
-		return quitButton;
-	}
-
-	public void setQuitButton(JButton quitButton) {
-		this.quitButton = quitButton;
-	}
+	
 }

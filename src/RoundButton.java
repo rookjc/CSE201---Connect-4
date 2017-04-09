@@ -9,7 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class RoundButton extends JButton {
-	private Color color; 
+	private Color color;
+	private Color pressedBackgroundColor; 
 	public RoundButton(String label, Color color) {
 		super(label);
 		this.color = color; 
@@ -32,9 +33,15 @@ public class RoundButton extends JButton {
 	}
 
 	protected void paintComponent(Graphics g) {
+		
+		if(getModel().isPressed()) {
+			 g.setColor(pressedBackgroundColor);
+		}
+		
 		if (getModel().isArmed()) {
 			g.setColor(Color.white);
-		} else {
+		} 
+		else {
 			g.setColor(getBackground());
 		}
 		g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
@@ -45,7 +52,6 @@ public class RoundButton extends JButton {
 		// RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON
 		// );
 		// g2d.setRenderingHints(hints);
-		
 		super.paintComponent(g);
 	}
 
@@ -55,6 +61,19 @@ public class RoundButton extends JButton {
 		
 	}
 
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color; 
+	}
+
+	public void setPressedBackgroundColor(Color pressedBackgroundColor) {
+        this.pressedBackgroundColor = pressedBackgroundColor;
+        repaint(); 
+    }
+	
 	/*
 	 * public static void main(String[] args) {
 	 * 
