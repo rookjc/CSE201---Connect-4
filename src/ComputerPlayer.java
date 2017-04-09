@@ -30,7 +30,7 @@ public class ComputerPlayer {
 	
 	// First method called, to run all of computer player's computations
 	public void makeMove() {
-		// Clear visual distinction for previous move
+		// Remove the visual distinction for previous move
 		if (recentlyPlaced != null)
 			recentlyPlaced.setColor(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 		
