@@ -33,10 +33,12 @@ public class Piece {
 		return this.color.equals(Piece.EMPTY);
 	}
 	
+	// True iff the human's piece is here
 	public boolean isHuman() {
 		return this.color.equals(GameState.playerIsRed ? Piece.RED : Piece.YELLOW);
 	}
 	
+	// True iff the computer's piece is here
 	public boolean isComputer() {
 		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}

@@ -50,4 +50,19 @@ public class GameBoard {
 		return board[row][col];
 	}
 	
+	// Gives the height of the stack of pieces in column number col
+	public int getColumnHeight(int col) {
+		for (int row = 0; row < 6; row++) {
+			if (!board[row][col].isEmpty())
+				return row;
+		}
+		return 6;
+	}
+	
+	// Get the number of pieces that must be placed in a piece's column,
+	// before that piece itself can be a valid move
+	public int getBuildUp(Piece p) {
+		return p.row - getColumnHeight(p.col);
+	}
+	
 }
