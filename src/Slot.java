@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 // Stub class to be implemented
 public class Slot {
 	// Constants for which of the 4 directions a slot can be oriented in
@@ -81,5 +83,19 @@ public class Slot {
 				return p;
 		}
 		return null;
+	}
+	
+	// Get the color of the player that has won in this slot (or Piece.EMPTY if neither)
+	public Color getWinningColor() {
+		boolean humanWins = pieces[0].isHuman();
+		for (Piece p : pieces) {
+			// If any piece isn't the winning color, no one wins
+			if ((p.isHuman() && !humanWins)
+					|| (p.isComputer() && humanWins)
+					|| (p.isEmpty()))
+				return Piece.EMPTY;
+		}
+		// One of the players wins
+		return (humanWins ^ GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
 }

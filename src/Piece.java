@@ -41,6 +41,7 @@ public class Piece {
 	
 	// True iff the computer's piece is here
 	public boolean isComputer() {
-		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
+		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED)
+				|| this.color.equals(Piece.CYAN);
 	}
 }

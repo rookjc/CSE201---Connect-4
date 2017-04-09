@@ -60,6 +60,7 @@ public class UserInterface extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					colorSelection.setVisible(false);
 					gI.setVisible(true);
+					GameState.playerIsRed = true;	// set flag
 					// temporary adding gI only , but needs more logical
 					// implementation
 					add(gI);
@@ -72,6 +73,7 @@ public class UserInterface extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					colorSelection.setVisible(false);
 					gI.setVisible(true);
+					GameState.playerIsRed = false;	// set flag
 					// temporary adding gI only , but needs more logical
 					// implementation
 					add(gI);

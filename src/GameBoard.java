@@ -81,4 +81,24 @@ public class GameBoard {
 		return p.row - getColumnHeight(p.col);
 	}
 	
+	// Check if either player has won, or the board is full
+	public void checkGameOver() {
+		// Check all potential slots for wins
+		for (Slot s : slots) {
+			Color winner = s.getWinningColor();
+			if (winner.equals(Piece.RED))
+				System.out.println("Red wins");	// TODO: have this actually do something
+			else if (winner.equals(Piece.YELLOW))
+				System.out.println("Yellow wins");	// TODO: have this actually do something
+		}
+		
+		// If no one has won, is the board full?
+		for (int col = 0; col < 7; col++) {
+			if (getColumnHeight(col) < 6)
+				return;	// Not full, there is still a space left
+		}
+		// Board full, game is a draw
+		System.out.println("Draw, no one wins");	// TODO: have this actually do something
+	}
+	
 }

@@ -18,16 +18,22 @@ public class ComputerPlayer {
 	
 	private GameBoard board;
 	private int[] columnPriorities;
+	private Piece recentlyPlaced;
 	
 	// Constructor for creating a computer player tied to a particular board
 	public ComputerPlayer(GameBoard gb) {
 		this.board = gb;
 		this.columnPriorities = new int[7];
 		Arrays.fill(this.columnPriorities, MovePriority.NORMAL);
+		this.recentlyPlaced = null;
 	}
 	
 	// First method called, to run all of computer player's computations
 	public void makeMove() {
+		// Clear visual distinction for previous move
+		if (recentlyPlaced != null)
+			recentlyPlaced.setColor(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
+		
 		// Analyze possible moves and decide on an optimal one
 		refreshPriorities();
 		int maxPriority = getMaxPriority();
@@ -36,6 +42,7 @@ public class ComputerPlayer {
 		
 		// Make the move visible on the board
 		board.makeMove(moveColumn, Piece.CYAN);
+		recentlyPlaced = board.getPiece(board.getColumnHeight(moveColumn) - 1, moveColumn);
 	}
 	
 	// Update columnPriorities based on the current state of the board
