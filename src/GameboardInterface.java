@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class GameboardInterface extends JPanel {
 	private ToolBar toolBar;
@@ -15,15 +16,15 @@ public class GameboardInterface extends JPanel {
 		setLayout(new BorderLayout());
 
 		toolBar = new ToolBar();
-		toolBar.getButton1().setText("Restart");
-		toolBar.getButton2().setText("Quit");
+		toolBar.getRestartButton().setText("Restart");
+		toolBar.getQuitButton().setText("Quit");
 
 		add(toolBar, BorderLayout.NORTH);
 
-		// Just a temporary button for
-		// testing the statistic page
-		// this button will be replaced
-		// by GameBoard Page Panel
+//		 Just a temporary button for
+//		 testing the statistic page
+//		 this button will be replaced
+//		 by GameBoard Page Panel
 		tempBtn = new JButton("Show Stats");
 		add(tempBtn);
 
