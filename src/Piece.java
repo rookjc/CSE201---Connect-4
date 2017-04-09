@@ -6,6 +6,7 @@ public class Piece {
 	public static final Color EMPTY = Color.WHITE;
 	public static final Color RED = Color.RED;
 	public static final Color YELLOW = Color.YELLOW;
+	public static final Color CYAN = Color.CYAN;	// Where the AI just played
 	
 	// Where this piece is located in the board
 	public final int row, col;

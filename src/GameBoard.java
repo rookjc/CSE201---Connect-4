@@ -1,8 +1,11 @@
+import java.awt.Color;
+
 // Represents the current state of the game board, with 42 Pieces and 69 4-in-a-row Slots
 // TODO: make this inherit from Panel
 public class GameBoard {
 	private Piece[][] board;
 	private Slot[] slots;
+	private ComputerPlayer computer;
 	
 	// Constructor for creating an empty GameBoard, along with all its component Pieces
 	public GameBoard () {
@@ -33,6 +36,9 @@ public class GameBoard {
 			for (int col = 0; col < 4; col++)
 				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.DIAGONAL_DOWN);
 		}
+		
+		// Create computer player
+		this.computer = new ComputerPlayer(this);
 	}
 	
 	// Revert this GameBoard back to an empty grid
@@ -48,6 +54,16 @@ public class GameBoard {
 	// Get the Piece located at a particular row and column
 	public Piece getPiece(int row, int col) {
 		return board[row][col];
+	}
+	
+	// Place a piece of a given pieceColor into the column indexed by col
+	public boolean makeMove(int col, Color pieceColor) {
+		int row = getColumnHeight(col);
+		if (row > 5)
+			return false;	// Column is full; invalid move
+		
+		board[row][col].setColor(pieceColor);
+		return true;
 	}
 	
 	// Gives the height of the stack of pieces in column number col
