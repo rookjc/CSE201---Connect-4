@@ -49,4 +49,9 @@ public class Slot {
 		
 		return result;
 	}
+	
+	// Returns true if either player can still win here
+	public boolean isViable() {
+		return false; // TODO: implement
+	}
 }

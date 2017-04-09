@@ -27,4 +27,17 @@ public class Piece {
 	public Color getColor() {
 		return this.color;
 	}
+	
+	// True iff there is no piece here
+	public boolean isEmpty() {
+		return this.color.equals(Piece.EMPTY);
+	}
+	
+	public boolean isHuman() {
+		return this.color.equals(GameState.playerIsRed ? Piece.RED : Piece.YELLOW);
+	}
+	
+	public boolean isComputer() {
+		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
+	}
 }

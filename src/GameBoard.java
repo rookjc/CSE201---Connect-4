@@ -1,4 +1,5 @@
 // Represents the current state of the game board, with 42 Pieces and 69 4-in-a-row Slots
+// TODO: make this inherit from Panel
 public class GameBoard {
 	private Piece[][] board;
 	private Slot[] slots;
