@@ -42,6 +42,7 @@ public class ComputerPlayer {
 		
 		// Make the move visible on the board
 		board.makeMove(moveColumn, Piece.CYAN);
+		System.out.println("computer moved in col: " + moveColumn);	// temporary
 		recentlyPlaced = board.getPiece(board.getColumnHeight(moveColumn) - 1, moveColumn);
 	}
 	
@@ -56,7 +57,7 @@ public class ComputerPlayer {
 		int max = -1;
 		for (int value : columnPriorities) {
 			if (value > max)
-				value = max;
+				max = value;
 		}
 		return max;
 	}
