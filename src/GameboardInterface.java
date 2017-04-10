@@ -29,9 +29,12 @@ public class GameboardInterface extends JPanel {
 //		tempBtn = new JButton("Show Stats");
 //		add(tempBtn);
 
-		setBackground(new Color(118, 142, 239));
+		Color bg = new Color(118, 142, 239);
+		
+		setBackground(bg);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(bg);
 		add(panel, BorderLayout.CENTER);
 		
 		JButton col1 = new JButton();
