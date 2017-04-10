@@ -37,33 +37,20 @@ public class GameboardInterface extends JPanel {
 		panel.setBackground(bg);
 		add(panel, BorderLayout.CENTER);
 		
-		JButton col1 = new JButton();
-		col1.setPreferredSize(new Dimension(105, 670));
-		panel.add(col1);
-		
-		JButton col2 = new JButton();
-		col2.setPreferredSize(new Dimension(105, 670));
-		panel.add(col2);
-		
-		JButton col3 = new JButton();
-		col3.setPreferredSize(new Dimension(105, 670));
-		panel.add(col3);
-		
-		JButton col4 = new JButton();
-		col4.setPreferredSize(new Dimension(105, 670));
-		panel.add(col4);
-		
-		JButton col5 = new JButton();
-		col5.setPreferredSize(new Dimension(105, 670));
-		panel.add(col5);
-		
-		JButton col6 = new JButton();
-		col6.setPreferredSize(new Dimension(105, 670));
-		panel.add(col6);
-		
-		JButton col7 = new JButton();
-		col7.setPreferredSize(new Dimension(105, 670));
-		panel.add(col7);
+		for(int i = 0; i < 7; i++) {
+			JButton column = new JButton();
+			column.setPreferredSize(new Dimension(105, 670));
+			
+			column.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+				}
+			});
+			
+			panel.add(column);
+		}
 	}
 	
 	public JButton getTempBtn() {
