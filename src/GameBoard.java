@@ -69,7 +69,7 @@ public class GameBoard {
 	// Gives the height of the stack of pieces in column number col
 	public int getColumnHeight(int col) {
 		for (int row = 0; row < 6; row++) {
-			if (!board[row][col].isEmpty())
+			if (board[row][col].isEmpty())
 				return row;
 		}
 		return 6;
@@ -82,23 +82,45 @@ public class GameBoard {
 	}
 	
 	// Check if either player has won, or the board is full
-	public void checkGameOver() {
+	public boolean checkGameOver() {
 		// Check all potential slots for wins
 		for (Slot s : slots) {
 			Color winner = s.getWinningColor();
-			if (winner.equals(Piece.RED))
+			if (winner.equals(Piece.RED)) {
 				System.out.println("Red wins");	// TODO: have this actually do something
-			else if (winner.equals(Piece.YELLOW))
+				return true;
+			} else if (winner.equals(Piece.YELLOW)) {
 				System.out.println("Yellow wins");	// TODO: have this actually do something
+				return true;
+			}
 		}
 		
 		// If no one has won, is the board full?
 		for (int col = 0; col < 7; col++) {
 			if (getColumnHeight(col) < 6)
-				return;	// Not full, there is still a space left
+				return false;	// Not full, there is still a space left
 		}
 		// Board full, game is a draw
 		System.out.println("Draw, no one wins");	// TODO: have this actually do something
+		return true;
+	}
+	
+	// Process an attempted move from the player
+	public void playerClick(int col) {
+		System.out.println("player moved in col: " + col);	// temporary
+		if (GameState.playerTurn) {
+			GameState.playerTurn = false;
+			if (makeMove(col, GameState.playerIsRed ? Piece.RED : Piece.YELLOW)) {
+				if (checkGameOver())
+					return;
+				computer.makeMove();
+				if (checkGameOver())
+					return;
+			} else {
+				System.out.println("Oops! That isn't a valid move!");	// TODO: have this actually do something
+			}
+		}
+		GameState.playerTurn = true;
 	}
 	
 }

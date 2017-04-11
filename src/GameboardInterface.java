@@ -12,6 +12,8 @@ public class GameboardInterface extends JPanel {
 	private ToolBar toolBar;
 
 	private JButton tempBtn;
+	
+	private GameBoard board;
 
 	public GameboardInterface() {
 		setLayout(new BorderLayout());
@@ -21,6 +23,8 @@ public class GameboardInterface extends JPanel {
 		toolBar.getQuitButton().setText("Quit");
 
 		add(toolBar, BorderLayout.NORTH);
+		
+		board = new GameBoard();	// Create the underlying data structure
 
 //		 Just a temporary button for
 //		 testing the statistic page
@@ -41,12 +45,16 @@ public class GameboardInterface extends JPanel {
 			JButton column = new JButton();
 			column.setPreferredSize(new Dimension(105, 670));
 			
+<<<<<<< HEAD
 			column.setBackground(bg);
 			
+=======
+			final int col = i;
+>>>>>>> origin/master
 			column.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
+					board.playerClick(col);
 				}
 			});
 			
