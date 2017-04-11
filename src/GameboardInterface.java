@@ -44,13 +44,8 @@ public class GameboardInterface extends JPanel {
 		for(int i = 0; i < 7; i++) {
 			JButton column = new JButton();
 			column.setPreferredSize(new Dimension(105, 670));
-			
-<<<<<<< HEAD
 			column.setBackground(bg);
-			
-=======
 			final int col = i;
->>>>>>> origin/master
 			column.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
