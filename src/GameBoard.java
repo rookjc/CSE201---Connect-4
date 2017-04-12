@@ -56,6 +56,11 @@ public class GameBoard {
 		return board[row][col];
 	}
 	
+	// Get the Piece located right below the Piece at a particular row and column (or null if none exists)
+	public Piece getPieceBelow(int row, int col) {
+		return row == 0 ? null : board[row-1][col];
+	}
+	
 	// Place a piece of a given pieceColor into the column indexed by col
 	public boolean makeMove(int col, Color pieceColor) {
 		int row = getColumnHeight(col);
@@ -114,6 +119,9 @@ public class GameBoard {
 				if (checkGameOver())
 					return;
 				computer.makeMove();
+				
+				printBoard();
+				
 				if (checkGameOver())
 					return;
 			} else {
@@ -121,6 +129,26 @@ public class GameBoard {
 			}
 		}
 		GameState.playerTurn = true;
+	}
+	
+	// Temporary debugging function
+	public void printBoard() {
+		for (int row = 5; row >= 0; row--) {
+			for (int col = 0; col < 7; col++) {
+				if (board[row][col].isComputer())
+					System.out.print("X ");
+				else if (board[row][col].isHuman())
+					System.out.print("O ");
+				else
+					System.out.print(". ");
+			}
+			System.out.println();
+		}
+	}
+	
+	// Getter for the slot array
+	public Slot[] getSlots() {
+		return this.slots;
 	}
 	
 }

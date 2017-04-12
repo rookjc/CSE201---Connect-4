@@ -35,11 +35,11 @@ public class Slot {
 		}
 		
 		// Extract the four needed pieces from the GameBoard
-		this.pieces = getPieces(board, origin, dx, dy);
+		this.pieces = collectPieces(board, origin, dx, dy);
 	}
 	
 	// Extract four aligned pieces based on origin piece and separations dx and dy
-	public static Piece[] getPieces(GameBoard board, Piece origin, int dx, int dy) {
+	public static Piece[] collectPieces(GameBoard board, Piece origin, int dx, int dy) {
 		// Get coordinates (row & column) of origin
 		int originX = origin.col;
 		int originY = origin.row;
@@ -98,4 +98,63 @@ public class Slot {
 		// One of the players wins
 		return (humanWins ^ GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
+	
+	// Returns true if there are no pieces in the slot
+	public boolean isEmpty() {
+		for (Piece p : pieces) {
+			if (!p.isEmpty())
+				return false;
+		}
+		return true;
+	}
+	
+	// Returns true if there are 4 pieces in the slot
+	public boolean isFull() {
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				return false;
+		}
+		return true;
+	}
+	
+	// Counts how many of the human's pieces are in this slot
+	public int getFrequencyOfHuman() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isHuman())
+				count++;
+		}
+		return count;
+	}
+	
+	// Counts how many of the computer's pieces are in this slot
+	public int getFrequencyOfComputer() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isComputer())
+				count++;
+		}
+		return count;
+	}
+	
+	// Counts how many empty pieces are in this slot
+	public int getFrequencyOfEmpty() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				count++;
+		}
+		return count;
+	}
+	
+	// True iff someone could still win in this slot
+	public boolean isWinnable() {
+		return getFrequencyOfHuman() == 0 || getFrequencyOfComputer() == 0;
+	}
+	
+	// True iff the computer can still win this this slot
+	public boolean computerCanWin() {
+		return getFrequencyOfHuman() == 0;
+	}
+	
 }

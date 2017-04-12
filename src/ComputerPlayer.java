@@ -48,8 +48,16 @@ public class ComputerPlayer {
 	
 	// Update columnPriorities based on the current state of the board
 	private void refreshPriorities() {
-		// TODO: Implement this method fully. Probably the bulk of the AI code
-		Arrays.fill(this.columnPriorities, MovePriority.NORMAL);
+		// Initially mark all columns as 'normal', unless they're full
+		for (int col = 0; col < 7; col++) {
+			columnPriorities[col] =
+					(board.getColumnHeight(col) < 6) ? MovePriority.NORMAL : MovePriority.FULL;
+		}
+		
+		// Factor in information from all slots (updating columnPriorities)
+		for (Slot s : board.getSlots()) {
+			evaluateSlot(s);
+		}
 	}
 	
 	// Gets the highest priority value appearing in any column
@@ -77,5 +85,30 @@ public class ComputerPlayer {
 		return values.get((int) (Math.random() * values.size()));
 	}
 	
+	// The order that it's most important to mark move priorities in (lower index = more important)
+	private static final int[] OVERWRITE_PRIORITIES = new int[] {0, 7, 6, 1, 2, 5, 4, 3};
+	
+	// If a column in columnPriorities has oldPriority, is it more important to mark it with newPriority?
+	private boolean shouldOverwrite(int oldPriority, int newPriority) {
+		for (int i = 0; i < 8; i++) {
+			if (OVERWRITE_PRIORITIES[i] == oldPriority)
+				return false;	// Existing priority marker is more important; do not change
+			if (OVERWRITE_PRIORITIES[i] == newPriority)
+				return true;	// Existing priority marker is more important; do not change
+		}
+		return false;	// Should never happen; invalid priority values
+	}
+	
+	
+	// Consider assigning a move priority to a particular column
+	private void mark(int col, int priority) {
+		if (shouldOverwrite(priority, columnPriorities[col]))
+			columnPriorities[col] = priority;
+	}
+	
+	// See if any moves into this slot are worth considering / specifically avoiding
+	private void evaluateSlot(Slot s) {
+		// TODO : implement evaluateSlot decision tree
+	}
 	
 }
