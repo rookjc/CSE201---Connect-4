@@ -85,7 +85,7 @@ public class ComputerPlayer {
 		return values.get((int) (Math.random() * values.size()));
 	}
 	
-	// The order that it's most important to mark move priorities in (lower index = more important)
+	// The order that it's most important to mark MovePriority values in (lower index = more important)
 	private static final int[] OVERWRITE_PRIORITIES = new int[] {0, 7, 6, 1, 2, 5, 4, 3};
 	
 	// If a column in columnPriorities has oldPriority, is it more important to mark it with newPriority?
@@ -99,7 +99,6 @@ public class ComputerPlayer {
 		return false;	// Should never happen; invalid priority values
 	}
 	
-	
 	// Consider assigning a move priority to a particular column
 	private void mark(int col, int priority) {
 		if (shouldOverwrite(priority, columnPriorities[col]))
@@ -108,7 +107,26 @@ public class ComputerPlayer {
 	
 	// See if any moves into this slot are worth considering / specifically avoiding
 	private void evaluateSlot(Slot s) {
-		// TODO : implement evaluateSlot decision tree
+		if (s.isWinnable()) {
+			// Get the number of each player's pieces in this slot. One of them will be 0.
+			int nHumanPieces = s.getFrequencyOfHuman();
+			int nComputerPieces = s.getFrequencyOfComputer();
+			// Order of if-statements doesn't really matter here
+			if (nHumanPieces == 3) {
+				// TODO: Consider marking with 6 or 1, depending on the empty piece's buildup
+			} else if (nComputerPieces == 3) {
+				// TODO: Consider marking with 7 or 2, depending on the empty piece's buildup
+			} else if (nHumanPieces == 2) {
+				// Probably don't bother doing anything
+			} else if (nComputerPieces == 2) {
+				// TODO: Try to mark both open pieces with MovePriority.SETUP2
+			} else if (nHumanPieces == 1) {
+				// Probably don't bother doing anything
+			} else if (nComputerPieces == 1) {
+				// TODO: Try to mark all 3 open pieces with MovePriority.SETUP1
+			}
+		}
+		// If the slot cannot be won in, don't change anything as a result of it
 	}
 	
 }
