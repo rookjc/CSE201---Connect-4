@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 // Stub class to be implemented
 public class Slot {
@@ -52,30 +54,6 @@ public class Slot {
 		return result;
 	}
 	
-	// Returns true if the computer player has 3 pieces and the remaining piece is empty
-	public boolean has3ComputerPieces() {
-		int nComputerPieces = 0;
-		for (Piece p : pieces) {
-			if (p.isComputer())
-				nComputerPieces++;
-			else if (p.isHuman())
-				return false;
-		}
-		return nComputerPieces == 3;
-	}
-	
-	// Returns true if the human player has 3 pieces and the remaining piece is empty
-	public boolean has3HumamPieces() {
-		int nHumanPieces = 0;
-		for (Piece p : pieces) {
-			if (p.isHuman())
-				nHumanPieces++;
-			else if (p.isComputer())
-				return false;
-		}
-		return nHumanPieces == 3;
-	}
-	
 	// Return one of the pieces in this slot that is empty, or null if none exists
 	public Piece getEmptyPiece() {
 		for (Piece p : pieces) {
@@ -83,6 +61,16 @@ public class Slot {
 				return p;
 		}
 		return null;
+	}
+	
+	// Gives a list of all empty pieces in the slot
+	public List<Piece> getEmptyPieces() {
+		List<Piece> result = new LinkedList<Piece>();
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				result.add(p);
+		}
+		return result;
 	}
 	
 	// Get the color of the player that has won in this slot (or Piece.EMPTY if neither)

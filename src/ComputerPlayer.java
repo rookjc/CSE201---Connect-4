@@ -38,6 +38,7 @@ public class ComputerPlayer {
 		refreshPriorities();
 		int maxPriority = getMaxPriority();
 		List<Integer> moveChoices = getMoveChoices(maxPriority);
+		System.out.println(moveChoices);
 		int moveColumn = chooseFrom(moveChoices);
 		
 		// Make the move visible on the board
@@ -101,8 +102,10 @@ public class ComputerPlayer {
 	
 	// Consider assigning a move priority to a particular column
 	private void mark(int col, int priority) {
-		if (shouldOverwrite(priority, columnPriorities[col]))
+		if (shouldOverwrite(columnPriorities[col], priority)) {
 			columnPriorities[col] = priority;
+			System.out.println("marking with priority " + priority);
+		}
 	}
 	
 	// See if any moves into this slot are worth considering / specifically avoiding
@@ -113,17 +116,36 @@ public class ComputerPlayer {
 			int nComputerPieces = s.getFrequencyOfComputer();
 			// Order of if-statements doesn't really matter here
 			if (nHumanPieces == 3) {
-				// TODO: Consider marking with 6 or 1, depending on the empty piece's buildup
-			} else if (nComputerPieces == 3) {
-				// TODO: Consider marking with 7 or 2, depending on the empty piece's buildup
-			} else if (nHumanPieces == 2) {
-				// Probably don't bother doing anything
-			} else if (nComputerPieces == 2) {
-				// TODO: Try to mark both open pieces with MovePriority.SETUP2
-			} else if (nHumanPieces == 1) {
-				// Probably don't bother doing anything
-			} else if (nComputerPieces == 1) {
-				// TODO: Try to mark all 3 open pieces with MovePriority.SETUP1
+				// Find the last piece needed to completely fill this slot
+				Piece lastPiece = s.getEmptyPiece();
+				int lastPieceBuildUp = board.getBuildUp(lastPiece);
+				if(lastPieceBuildUp == 0) {
+					// Block the human from finishing this slot and winning
+					mark(lastPiece.col, MovePriority.BLOCK);
+				} else if (lastPieceBuildUp == 1) {
+					// Don't allow the human to finish the slot in the next turn
+					mark(lastPiece.col, MovePriority.LOSE);
+				}
+			} 
+			else if (nComputerPieces == 3) {
+				// Find the last piece needed to completely fill this slot
+				Piece lastPiece = s.getEmptyPiece();
+				int lastPieceBuildUp = board.getBuildUp(lastPiece);
+				if(lastPieceBuildUp == 0) {
+					// There's a winning move, so mark that!
+					mark(lastPiece.col, MovePriority.WIN);
+				} else if (lastPieceBuildUp == 1) {
+					// Try to avoid allowing the player to block this winning move
+					mark(lastPiece.col, MovePriority.AVOID);
+				}
+			}
+			else if (nComputerPieces > 0) {
+				// If there are 1 or 2 pieces for the computer, consider building on this win opportunity
+				List<Piece> emptyPieces = s.getEmptyPieces();
+				for (Piece p : emptyPieces) {
+					if (board.getBuildUp(p) == 0)
+						mark(p.col, nComputerPieces == 2 ? MovePriority.SETUP2 : MovePriority.SETUP1);
+				}
 			}
 		}
 		// If the slot cannot be won in, don't change anything as a result of it
