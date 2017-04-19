@@ -30,8 +30,10 @@ public class GameboardInterface extends JPanel {
 
 		board = new GameBoard();	// Create the underlying data structure
 		
-		Color bg = new Color(118, 142, 239);
+		Color bg = new Color(127, 179, 213);
 
+		setBackground(bg);
+		
 //		for(int i = 0; i < 7; i++) {
 //			JButton column = new JButton();
 //			column.setPreferredSize(new Dimension(105, 670));
