@@ -55,7 +55,7 @@ public class GameboardInterface extends JPanel {
 	{
 		int xOffset = 0;
 		int yOffset = 0;
-		
+				
 		super.paintComponent(g);
 		
 		for(int i = 0; i < 7; i++) {
@@ -63,13 +63,13 @@ public class GameboardInterface extends JPanel {
 				
 				Graphics2D g2 = (Graphics2D)g;
 				g2.setColor(Color.WHITE);
-				Ellipse2D.Double circle = new Ellipse2D.Double(((i+1)*25 + xOffset), (100 + yOffset), 75, 75);
+				Ellipse2D.Double circle = new Ellipse2D.Double((25 + xOffset), (100 + yOffset), 75, 75);
 				g2.fill(circle);
 				
 				yOffset += 93;
 			}
 			
-			xOffset += 84;
+			xOffset += 109;
 			yOffset = 0;
 		}		
 	}
