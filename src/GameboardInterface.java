@@ -52,6 +52,8 @@ public class GameboardInterface extends JPanel implements MouseListener {
 //
 //			this.add(column);
 //		}
+		
+		addMouseListener(this);
 	}
 
 	@Override
@@ -82,9 +84,15 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		
 		int xCoord = e.getX();
+		int yCoord = e.getY();
 		int width = 800;
 		
+		if(yCoord > 80) {
 		
+		int column = (xCoord * 7)/width;
+		
+		System.out.println(column);
+		}
 	}
 	
 
