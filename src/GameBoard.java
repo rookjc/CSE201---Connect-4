@@ -92,10 +92,12 @@ public class GameBoard {
 		for (Slot s : slots) {
 			Color winner = s.getWinningColor();
 			if (winner.equals(Piece.RED)) {
-				System.out.println("Red wins");	// TODO: have this actually do something
+				System.out.println("Red wins");	// TODO: show where the win is first
+				GameState.addRedWin();
 				return true;
 			} else if (winner.equals(Piece.YELLOW)) {
-				System.out.println("Yellow wins");	// TODO: have this actually do something
+				System.out.println("Yellow wins");	// TODO: show where the win is first
+				GameState.addYellowWin();
 				return true;
 			}
 		}
@@ -106,29 +108,31 @@ public class GameBoard {
 				return false;	// Not full, there is still a space left
 		}
 		// Board full, game is a draw
-		System.out.println("Draw, no one wins");	// TODO: have this actually do something
+		System.out.println("Draw, no one wins");	// TODO: say something before going to stats page
+		GameState.addYellowWin();
 		return true;
 	}
 	
-	// Process an attempted move from the player
-	public void playerClick(int col) {
+	// Process an attempted move from the player. Return true iff the game ends after this click.
+	public boolean playerClick(int col) {
 		System.out.println("player moved in col: " + col);	// temporary
 		if (GameState.playerTurn) {
 			GameState.playerTurn = false;
 			if (makeMove(col, GameState.playerIsRed ? Piece.RED : Piece.YELLOW)) {
 				if (checkGameOver())
-					return;
+					return true;
 				computer.makeMove();
 				
 				printBoard();
 				
 				if (checkGameOver())
-					return;
+					return true;
 			} else {
 				System.out.println("Oops! That isn't a valid move!");	// TODO: have this actually do something
 			}
 		}
 		GameState.playerTurn = true;
+		return false;
 	}
 	
 	// Temporary debugging function
