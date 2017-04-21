@@ -68,7 +68,7 @@ public class GameboardInterface extends JPanel implements MouseListener {
 			for(int j = 0; j < 6; j++) {
 				
 				Graphics2D g2 = (Graphics2D)g;
-				g2.setColor(Color.WHITE);
+				g2.setColor(board.getPiece(5 - j, i).getColor());
 				Ellipse2D.Double circle = new Ellipse2D.Double((25 + xOffset), (100 + yOffset), 75, 75);
 				g2.fill(circle);
 				
@@ -92,6 +92,8 @@ public class GameboardInterface extends JPanel implements MouseListener {
 		int column = (xCoord * 7)/width;
 		
 		System.out.println(column);
+		board.playerClick(column);
+		repaint();
 		}
 	}
 	
