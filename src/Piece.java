@@ -5,6 +5,7 @@ public class Piece {
 	// TODO: Actual colors can be changed to make it prettier
 	public static final Color EMPTY = Color.WHITE;
 	public static final Color RED = new Color(253, 105, 105);
+	public static final Color YELLOW = new Color(249, 255,152);
 	public static final Color CYAN = Color.CYAN;	// Where the AI just played
 	
 	// Where this piece is located in the board
