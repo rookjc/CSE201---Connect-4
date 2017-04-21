@@ -123,9 +123,7 @@ public class GameBoard {
 				if (checkGameOver())
 					return true;
 				computer.makeMove();
-				
-				printBoard();
-				
+								
 				if (checkGameOver())
 					return true;
 			} else {
@@ -134,21 +132,6 @@ public class GameBoard {
 		}
 		GameState.playerTurn = true;
 		return false;
-	}
-	
-	// Temporary debugging function
-	public void printBoard() {
-		for (int row = 5; row >= 0; row--) {
-			for (int col = 0; col < 7; col++) {
-				if (board[row][col].isComputer())
-					System.out.print("X ");
-				else if (board[row][col].isHuman())
-					System.out.print("O ");
-				else
-					System.out.print(". ");
-			}
-			System.out.println();
-		}
 	}
 	
 	// Getter for the slot array
