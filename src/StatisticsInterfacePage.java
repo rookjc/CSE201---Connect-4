@@ -24,7 +24,7 @@ public class StatisticsInterfacePage extends JPanel{
 		toolBar.getQuitButton().setText("Quit");
 		
 		StatisticsTokenList st = 
-				new StatisticsTokenList("1000", "1000", "1000?", 
+				new StatisticsTokenList(GameState.getWinPercent(), GameState.getDrawPercent(), GameState.getLosePercent(), 
 						new Color(249, 255,152), new Color(253,105,105));
 		
 		st.setWinColor(Color.GREEN);

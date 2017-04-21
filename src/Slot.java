@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 // Stub class to be implemented
 public class Slot {
@@ -35,11 +37,11 @@ public class Slot {
 		}
 		
 		// Extract the four needed pieces from the GameBoard
-		this.pieces = getPieces(board, origin, dx, dy);
+		this.pieces = collectPieces(board, origin, dx, dy);
 	}
 	
 	// Extract four aligned pieces based on origin piece and separations dx and dy
-	public static Piece[] getPieces(GameBoard board, Piece origin, int dx, int dy) {
+	public static Piece[] collectPieces(GameBoard board, Piece origin, int dx, int dy) {
 		// Get coordinates (row & column) of origin
 		int originX = origin.col;
 		int originY = origin.row;
@@ -52,30 +54,6 @@ public class Slot {
 		return result;
 	}
 	
-	// Returns true if the computer player has 3 pieces and the remaining piece is empty
-	public boolean has3ComputerPieces() {
-		int nComputerPieces = 0;
-		for (Piece p : pieces) {
-			if (p.isComputer())
-				nComputerPieces++;
-			else if (p.isHuman())
-				return false;
-		}
-		return nComputerPieces == 3;
-	}
-	
-	// Returns true if the human player has 3 pieces and the remaining piece is empty
-	public boolean has3HumamPieces() {
-		int nHumanPieces = 0;
-		for (Piece p : pieces) {
-			if (p.isHuman())
-				nHumanPieces++;
-			else if (p.isComputer())
-				return false;
-		}
-		return nHumanPieces == 3;
-	}
-	
 	// Return one of the pieces in this slot that is empty, or null if none exists
 	public Piece getEmptyPiece() {
 		for (Piece p : pieces) {
@@ -83,6 +61,16 @@ public class Slot {
 				return p;
 		}
 		return null;
+	}
+	
+	// Gives a list of all empty pieces in the slot
+	public List<Piece> getEmptyPieces() {
+		List<Piece> result = new LinkedList<Piece>();
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				result.add(p);
+		}
+		return result;
 	}
 	
 	// Get the color of the player that has won in this slot (or Piece.EMPTY if neither)
@@ -98,4 +86,63 @@ public class Slot {
 		// One of the players wins
 		return (humanWins ^ GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
+	
+	// Returns true if there are no pieces in the slot
+	public boolean isEmpty() {
+		for (Piece p : pieces) {
+			if (!p.isEmpty())
+				return false;
+		}
+		return true;
+	}
+	
+	// Returns true if there are 4 pieces in the slot
+	public boolean isFull() {
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				return false;
+		}
+		return true;
+	}
+	
+	// Counts how many of the human's pieces are in this slot
+	public int getFrequencyOfHuman() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isHuman())
+				count++;
+		}
+		return count;
+	}
+	
+	// Counts how many of the computer's pieces are in this slot
+	public int getFrequencyOfComputer() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isComputer())
+				count++;
+		}
+		return count;
+	}
+	
+	// Counts how many empty pieces are in this slot
+	public int getFrequencyOfEmpty() {
+		int count = 0;
+		for (Piece p : pieces) {
+			if (p.isEmpty())
+				count++;
+		}
+		return count;
+	}
+	
+	// True iff someone could still win in this slot
+	public boolean isWinnable() {
+		return getFrequencyOfHuman() == 0 || getFrequencyOfComputer() == 0;
+	}
+	
+	// True iff the computer can still win this this slot
+	public boolean computerCanWin() {
+		return getFrequencyOfHuman() == 0;
+	}
+	
 }
