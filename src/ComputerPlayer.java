@@ -38,7 +38,6 @@ public class ComputerPlayer {
 		refreshPriorities();
 		int maxPriority = getMaxPriority();
 		List<Integer> moveChoices = getMoveChoices(maxPriority);
-		System.out.println(moveChoices);
 		int moveColumn = chooseFrom(moveChoices);
 		
 		// Make the move visible on the board
@@ -49,16 +48,8 @@ public class ComputerPlayer {
 	
 	// Update columnPriorities based on the current state of the board
 	private void refreshPriorities() {
-		// Initially mark all columns as 'normal', unless they're full
-		for (int col = 0; col < 7; col++) {
-			columnPriorities[col] =
-					(board.getColumnHeight(col) < 6) ? MovePriority.NORMAL : MovePriority.FULL;
-		}
-		
-		// Factor in information from all slots (updating columnPriorities)
-		for (Slot s : board.getSlots()) {
-			evaluateSlot(s);
-		}
+		// TODO: Implement this method fully. Probably the bulk of the AI code
+		Arrays.fill(this.columnPriorities, MovePriority.NORMAL);
 	}
 	
 	// Gets the highest priority value appearing in any column
@@ -86,69 +77,5 @@ public class ComputerPlayer {
 		return values.get((int) (Math.random() * values.size()));
 	}
 	
-	// The order that it's most important to mark MovePriority values in (lower index = more important)
-	private static final int[] OVERWRITE_PRIORITIES = new int[] {0, 7, 6, 1, 2, 5, 4, 3};
-	
-	// If a column in columnPriorities has oldPriority, is it more important to mark it with newPriority?
-	private boolean shouldOverwrite(int oldPriority, int newPriority) {
-		for (int i = 0; i < 8; i++) {
-			if (OVERWRITE_PRIORITIES[i] == oldPriority)
-				return false;	// Existing priority marker is more important; do not change
-			if (OVERWRITE_PRIORITIES[i] == newPriority)
-				return true;	// Existing priority marker is more important; do not change
-		}
-		return false;	// Should never happen; invalid priority values
-	}
-	
-	// Consider assigning a move priority to a particular column
-	private void mark(int col, int priority) {
-		if (shouldOverwrite(columnPriorities[col], priority)) {
-			columnPriorities[col] = priority;
-			System.out.println("marking with priority " + priority);
-		}
-	}
-	
-	// See if any moves into this slot are worth considering / specifically avoiding
-	private void evaluateSlot(Slot s) {
-		if (s.isWinnable()) {
-			// Get the number of each player's pieces in this slot. One of them will be 0.
-			int nHumanPieces = s.getFrequencyOfHuman();
-			int nComputerPieces = s.getFrequencyOfComputer();
-			// Order of if-statements doesn't really matter here
-			if (nHumanPieces == 3) {
-				// Find the last piece needed to completely fill this slot
-				Piece lastPiece = s.getEmptyPiece();
-				int lastPieceBuildUp = board.getBuildUp(lastPiece);
-				if(lastPieceBuildUp == 0) {
-					// Block the human from finishing this slot and winning
-					mark(lastPiece.col, MovePriority.BLOCK);
-				} else if (lastPieceBuildUp == 1) {
-					// Don't allow the human to finish the slot in the next turn
-					mark(lastPiece.col, MovePriority.LOSE);
-				}
-			} 
-			else if (nComputerPieces == 3) {
-				// Find the last piece needed to completely fill this slot
-				Piece lastPiece = s.getEmptyPiece();
-				int lastPieceBuildUp = board.getBuildUp(lastPiece);
-				if(lastPieceBuildUp == 0) {
-					// There's a winning move, so mark that!
-					mark(lastPiece.col, MovePriority.WIN);
-				} else if (lastPieceBuildUp == 1) {
-					// Try to avoid allowing the player to block this winning move
-					mark(lastPiece.col, MovePriority.AVOID);
-				}
-			}
-			else if (nComputerPieces > 0) {
-				// If there are 1 or 2 pieces for the computer, consider building on this win opportunity
-				List<Piece> emptyPieces = s.getEmptyPieces();
-				for (Piece p : emptyPieces) {
-					if (board.getBuildUp(p) == 0)
-						mark(p.col, nComputerPieces == 2 ? MovePriority.SETUP2 : MovePriority.SETUP1);
-				}
-			}
-		}
-		// If the slot cannot be won in, don't change anything as a result of it
-	}
 	
 }

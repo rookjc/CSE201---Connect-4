@@ -12,7 +12,7 @@ import sun.net.www.content.image.gif;
 
 public class UserInterface extends JFrame {
 	static final int WIDTH = 800;
-	static final int HEIGHT = 800;
+	static final int HEIGHT = 700;
 
 	private InterfacePanel interfacePanel;
 	private ColorSelectionPage colorSelection;
