@@ -100,6 +100,10 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	public ToolBar getToolBar() {
 		return toolBar;
 	}
+	
+	public GameBoard getBoard(){
+		return board;
+	}
 
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
