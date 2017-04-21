@@ -79,7 +79,7 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	}
 
 	@Override
-	public void MousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		
 		int xCoord = e.getX();
 		int width = 800;
@@ -107,12 +107,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
