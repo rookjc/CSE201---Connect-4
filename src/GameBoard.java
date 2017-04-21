@@ -49,6 +49,7 @@ public class GameBoard {
 				board[row][col].setColor(Piece.EMPTY);
 			}
 		}
+		computer.clearRecentPiece();
 	}
 	
 	// Get the Piece located at a particular row and column

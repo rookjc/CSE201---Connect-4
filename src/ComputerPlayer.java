@@ -150,5 +150,10 @@ public class ComputerPlayer {
 		}
 		// If the slot cannot be won in, don't change anything as a result of it
 	}
+
+	// Remove memory of what the last piece played was (for when restarting the game)
+	public void clearRecentPiece() {
+		recentlyPlaced = null;
+	}
 	
 }
