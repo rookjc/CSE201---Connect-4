@@ -91,7 +91,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 		
 		int column = (xCoord * 7)/width;
 		
-		System.out.println(column);
 		board.playerClick(column);
 		repaint();
 		}
