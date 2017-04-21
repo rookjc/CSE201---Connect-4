@@ -3,16 +3,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class GameboardInterface extends JPanel {
+public class GameboardInterface extends JPanel implements MouseListener {
 	private ToolBar toolBar;
 
 	private JButton tempBtn;
@@ -77,6 +79,16 @@ public class GameboardInterface extends JPanel {
 	}
 
 	@Override
+	public void MousePressed(MouseEvent e) {
+		
+		int xCoord = e.getX();
+		int width = 800;
+		
+		
+	}
+	
+
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(300, 300); // appropriate constants
 	}
@@ -87,5 +99,27 @@ public class GameboardInterface extends JPanel {
 
 	public ToolBar getToolBar() {
 		return toolBar;
+	}
+
+	public void mouseEntered(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {}
+	public void mouseMoved(MouseEvent e) {}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
