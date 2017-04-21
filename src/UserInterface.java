@@ -105,24 +105,8 @@ public class UserInterface extends JFrame {
 				});
 			}
 
-			// Temp Button
-			JButton temp = gI.getTempBtn();
-
 			StatisticsInterfacePage sI = new StatisticsInterfacePage(); 
-			// When this button triggers,
-			// both buttons will change their texts
-			// and the stat's interface will shown
-			temp.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					  
-					sI.setVisible(true);
-					gI.setVisible(false);
-					add(sI);
-				}
-			});
-			
 			//Stat's Interface 
 			if(sI != null) {
 				JButton replay = sI.getToolBar().getRestartButton(); 
