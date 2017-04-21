@@ -87,6 +87,7 @@ public class UserInterface extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						gI.getBoard().clearBoard();
 						gI.setVisible(false);
 						colorSelection.setVisible(true);
 					}
