@@ -38,12 +38,10 @@ public class ComputerPlayer {
 		refreshPriorities();
 		int maxPriority = getMaxPriority();
 		List<Integer> moveChoices = getMoveChoices(maxPriority);
-		System.out.println(moveChoices);
 		int moveColumn = chooseFrom(moveChoices);
 		
 		// Make the move visible on the board
 		board.makeMove(moveColumn, Piece.CYAN);
-		System.out.println("computer moved in col: " + moveColumn);	// temporary
 		recentlyPlaced = board.getPiece(board.getColumnHeight(moveColumn) - 1, moveColumn);
 	}
 	
@@ -104,7 +102,6 @@ public class ComputerPlayer {
 	private void mark(int col, int priority) {
 		if (shouldOverwrite(columnPriorities[col], priority)) {
 			columnPriorities[col] = priority;
-			System.out.println("marking with priority " + priority);
 		}
 	}
 	

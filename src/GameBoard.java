@@ -116,7 +116,6 @@ public class GameBoard {
 	
 	// Process an attempted move from the player. Return true iff the game ends after this click.
 	public boolean playerClick(int col) {
-		System.out.println("player moved in col: " + col);	// temporary
 		if (GameState.playerTurn) {
 			GameState.playerTurn = false;
 			if (makeMove(col, GameState.playerIsRed ? Piece.RED : Piece.YELLOW)) {
