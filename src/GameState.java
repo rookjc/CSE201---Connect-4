@@ -1,5 +1,11 @@
 // Stub class to be implemented
 public class GameState {
+	public static final int NORMAL = 0;
+	public static final int PLAYERWON = 1;
+	public static final int PLAYERLOST = 2;
+	public static final int DRAW = 3;
+	public static final int INVALIDMOVE = 4;
+	
 	// Player is red if this is true, or yellow if false
 	public static boolean playerIsRed = false;
 	// True if game board is accepting player input

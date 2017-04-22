@@ -7,10 +7,13 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Rectangle;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -87,12 +90,41 @@ public class GameboardInterface extends JPanel implements MouseListener {
 		int yCoord = e.getY();
 		int width = 800;
 		
-		if(yCoord > 80) {
-		
-		int column = (xCoord * 7)/width;
-		
-		board.playerClick(column);
-		repaint();
+		// If it's the player's turn and they click on the board region, attempt a move in that column
+		if(GameState.playerTurn && yCoord > 80) {
+			int column = (xCoord * 7)/width;
+			
+			int state = board.playerClick(column);
+			if (state != GameState.NORMAL) {
+				String message = "";
+				String title = "Game Over";
+				boolean gameEnds = true;
+				switch (state) {
+				case GameState.PLAYERLOST:
+					message = "You lost!";
+					break;
+				case GameState.PLAYERWON:
+					message = "You won!";
+					break;
+				case GameState.DRAW:
+					message = "The board is full, no one wins!";
+					break;
+				case GameState.INVALIDMOVE:
+					message = "Oops! That isn't a valid move.";
+					title = "Warning";
+					gameEnds = false;
+					break;
+				}
+				//System.out.println("Showing message");
+				repaint();
+				JOptionPane.showConfirmDialog(this, message, title, JOptionPane.DEFAULT_OPTION);
+				if (gameEnds) {
+					System.out.println("Go to results.");
+				} else {
+					GameState.playerTurn = true;
+				}
+			}
+			repaint();
 		}
 	}
 	

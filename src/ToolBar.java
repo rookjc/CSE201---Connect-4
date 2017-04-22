@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -22,7 +23,7 @@ public class ToolBar extends JPanel {
 		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
 		// label text could change as the game goes 
-		title = new JLabel("????????");  
+		title = new JLabel("??");  
 		
 		
 		// quit button
@@ -77,9 +78,12 @@ public class ToolBar extends JPanel {
 	public JLabel getTitle() {
 		return title;
 	}
+	
+	public void setTitle(String title) {
+		this.title.setText(title);
+	}
 
 	public JButton getQuitButton() {
 		return quitButton;
 	}
-	
 }

@@ -18,22 +18,16 @@ public class ComputerPlayer {
 	
 	private GameBoard board;
 	private int[] columnPriorities;
-	private Piece recentlyPlaced;
 	
 	// Constructor for creating a computer player tied to a particular board
 	public ComputerPlayer(GameBoard gb) {
 		this.board = gb;
 		this.columnPriorities = new int[7];
 		Arrays.fill(this.columnPriorities, MovePriority.NORMAL);
-		this.recentlyPlaced = null;
 	}
 	
 	// First method called, to run all of computer player's computations
 	public void makeMove() {
-		// Remove the visual distinction for previous move
-		if (recentlyPlaced != null)
-			recentlyPlaced.setColor(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
-		
 		// Analyze possible moves and decide on an optimal one
 		refreshPriorities();
 		int maxPriority = getMaxPriority();
@@ -42,9 +36,7 @@ public class ComputerPlayer {
 		int moveColumn = chooseFrom(moveChoices);
 		
 		// Make the move visible on the board
-		board.makeMove(moveColumn, Piece.CYAN);
-		System.out.println("computer moved in col: " + moveColumn);	// temporary
-		recentlyPlaced = board.getPiece(board.getColumnHeight(moveColumn) - 1, moveColumn);
+		board.makeMove(moveColumn, GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
 	
 	// Update columnPriorities based on the current state of the board
@@ -149,11 +141,6 @@ public class ComputerPlayer {
 			}
 		}
 		// If the slot cannot be won in, don't change anything as a result of it
-	}
-
-	// Remove memory of what the last piece played was (for when restarting the game)
-	public void clearRecentPiece() {
-		recentlyPlaced = null;
 	}
 	
 }

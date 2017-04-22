@@ -49,7 +49,6 @@ public class GameBoard {
 				board[row][col].setColor(Piece.EMPTY);
 			}
 		}
-		computer.clearRecentPiece();
 	}
 	
 	// Get the Piece located at a particular row and column
@@ -87,53 +86,56 @@ public class GameBoard {
 		return p.row - getColumnHeight(p.col);
 	}
 	
-	// Check if either player has won, or the board is full
-	public boolean checkGameOver() {
+	// Check if either player has won, or the board is full, giving the proper GameState constant back
+	public int checkGameOver() {
 		// Check all potential slots for wins
 		for (Slot s : slots) {
 			Color winner = s.getWinningColor();
 			if (winner.equals(Piece.RED)) {
-				System.out.println("Red wins");	// TODO: show where the win is first
+				// TODO: show where the win is first
 				GameState.addRedWin();
-				return true;
+				return GameState.playerIsRed ? GameState.PLAYERWON : GameState.PLAYERLOST;
 			} else if (winner.equals(Piece.YELLOW)) {
-				System.out.println("Yellow wins");	// TODO: show where the win is first
+				// TODO: show where the win is first
 				GameState.addYellowWin();
-				return true;
+				return GameState.playerIsRed ? GameState.PLAYERLOST : GameState.PLAYERWON;
 			}
 		}
 		
 		// If no one has won, is the board full?
 		for (int col = 0; col < 7; col++) {
 			if (getColumnHeight(col) < 6)
-				return false;	// Not full, there is still a space left
+				return GameState.NORMAL;	// Not full, there is still a space left
 		}
 		// Board full, game is a draw
-		System.out.println("Draw, no one wins");	// TODO: say something before going to stats page
-		GameState.addYellowWin();
-		return true;
+		GameState.addDraw();
+		return GameState.DRAW;
 	}
 	
-	// Process an attempted move from the player. Return true iff the game ends after this click.
-	public boolean playerClick(int col) {
+	// Process an attempted move from the player. Return a GameState constant indicating win/loss/draw
+	public int playerClick(int col) {
 		System.out.println("player moved in col: " + col);	// temporary
 		if (GameState.playerTurn) {
 			GameState.playerTurn = false;
 			if (makeMove(col, GameState.playerIsRed ? Piece.RED : Piece.YELLOW)) {
-				if (checkGameOver())
-					return true;
+				// Check if player wins
+				int state = checkGameOver();
+				if (state != GameState.NORMAL)
+					return state;
+				
+				// TODO: short time delay, change text of top status bar
+				
+				// Make computer move, and check if it wins
 				computer.makeMove();
-				
-				printBoard();
-				
-				if (checkGameOver())
-					return true;
+				state = checkGameOver();
+				if (state != GameState.NORMAL)
+					return state;
 			} else {
-				System.out.println("Oops! That isn't a valid move!");	// TODO: have this actually do something
+				return GameState.INVALIDMOVE;
 			}
 		}
 		GameState.playerTurn = true;
-		return false;
+		return GameState.NORMAL;
 	}
 	
 	// Temporary debugging function

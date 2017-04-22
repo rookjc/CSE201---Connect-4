@@ -6,7 +6,6 @@ public class Piece {
 	public static final Color EMPTY = Color.WHITE;
 	public static final Color RED = Color.RED;
 	public static final Color YELLOW = Color.YELLOW;
-	public static final Color CYAN = Color.CYAN;	// Where the AI just played
 	
 	// Where this piece is located in the board
 	public final int row, col;
@@ -41,7 +40,6 @@ public class Piece {
 	
 	// True iff the computer's piece is here
 	public boolean isComputer() {
-		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED)
-				|| this.color.equals(Piece.CYAN);
+		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
 }
