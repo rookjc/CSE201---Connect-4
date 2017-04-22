@@ -111,7 +111,7 @@ public class GameBoard {
 		GameState.addDraw();
 		return GameState.DRAW;
 	}
-	
+
 	// Process an attempted move from the player. Return a GameState constant indicating win/loss/draw
 	public int playerClick(int col) {
 		System.out.println("player moved in col: " + col);	// temporary
@@ -136,21 +136,6 @@ public class GameBoard {
 		}
 		GameState.playerTurn = true;
 		return GameState.NORMAL;
-	}
-	
-	// Temporary debugging function
-	public void printBoard() {
-		for (int row = 5; row >= 0; row--) {
-			for (int col = 0; col < 7; col++) {
-				if (board[row][col].isComputer())
-					System.out.print("X ");
-				else if (board[row][col].isHuman())
-					System.out.print("O ");
-				else
-					System.out.print(". ");
-			}
-			System.out.println();
-		}
 	}
 	
 	// Getter for the slot array

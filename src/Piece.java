@@ -2,10 +2,9 @@ import java.awt.Color;
 
 // Represents one piece in the 6 by 7 GameBoard.board
 public class Piece {
-	// TODO: Actual colors can be changed to make it prettier
 	public static final Color EMPTY = Color.WHITE;
-	public static final Color RED = Color.RED;
-	public static final Color YELLOW = Color.YELLOW;
+	public static final Color RED = new Color(253, 105, 105);
+	public static final Color YELLOW = new Color(249, 255,152);
 	
 	// Where this piece is located in the board
 	public final int row, col;

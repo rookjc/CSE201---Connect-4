@@ -21,7 +21,7 @@ public class RoundButton extends JButton {
 		 * These statements enlarge the button so that it becomes a circle
 		 * rather than an oval.
 		 */
-		Dimension size = getPreferredSize();
+		Dimension size = new Dimension(100, 100);
 		size.width = size.height = Math.max(size.width, size.height);
 		setPreferredSize(size);
 

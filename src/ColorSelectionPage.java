@@ -11,6 +11,9 @@ public class ColorSelectionPage extends JPanel{
 	private JLabel mainPageTitle;
 	private JButton redButton;
 	private JButton yellowButton;
+	
+	final Color RED = new Color(253, 105, 105);
+	final Color YELLOW = new Color(249, 255,152);
 
 	public ColorSelectionPage(int width, int height) {
 		super();
@@ -20,13 +23,11 @@ public class ColorSelectionPage extends JPanel{
 		// setup Title
 		mainPageTitle.setFont(new Font("Verdana", Font.BOLD, 60));
 
-		redButton = new RoundButton("Red", new Color(253,105,105));
+		redButton = new RoundButton("Red", RED);
 		redButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
 		
-		
-		yellowButton = new RoundButton("Yellow", new Color(249, 255,152));
+		yellowButton = new RoundButton("Yellow", YELLOW);
 		yellowButton.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE, 30));
-		
 		
 		setBackground(new Color(118, 142, 239));
 		LayoutSetup layOut = new LayoutSetup(mainPageTitle, redButton, yellowButton, this); 
