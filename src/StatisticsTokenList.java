@@ -18,16 +18,16 @@ public class StatisticsTokenList extends JPanel {
 			Color winColor, Color lossColor) {
 		this.winColor = winColor;
 		this.lossColor = lossColor;
-		winStatBtn = new RoundButton("Wins:\n" + winPercent + "%", winColor);
+		winStatBtn = new RoundButton("Wins: " + winPercent + "%", winColor);
 		winStatBtn.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 20));
 		winStatBtn.setPressedBackgroundColor(winColor);
 		
-		drawStatBtn = new RoundButton("Draws:\n" + drawPercent + "%", new Color(255, 255, 255));
+		drawStatBtn = new RoundButton("Draws: " + drawPercent + "%", new Color(255, 255, 255));
 		drawStatBtn.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 20));
 		drawStatBtn.setPressedBackgroundColor(new Color(255, 255, 255));
 		
 		
-		loseStatBtn = new RoundButton("Losses:\n" + losePercent + "%", lossColor);
+		loseStatBtn = new RoundButton("Losses: " + losePercent + "%", lossColor);
 		loseStatBtn.setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 20));
 		loseStatBtn.setPressedBackgroundColor(lossColor);
 

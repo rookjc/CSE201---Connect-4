@@ -49,6 +49,7 @@ public class GameBoard {
 				board[row][col].setColor(Piece.EMPTY);
 			}
 		}
+		GameState.playerTurn = true;
 	}
 	
 	// Get the Piece located at a particular row and column
@@ -122,9 +123,7 @@ public class GameBoard {
 				int state = checkGameOver();
 				if (state != GameState.NORMAL)
 					return state;
-				
-				// TODO: short time delay, change text of top status bar
-				
+								
 				// Make computer move, and check if it wins
 				computer.makeMove();
 				state = checkGameOver();

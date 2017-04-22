@@ -19,12 +19,14 @@ public class UserInterface extends JFrame {
 	private InterfacePanel interfacePanel;
 	private ColorSelectionPage colorSelection;
 	private GameboardInterface gI;
+	private StatisticsInterfacePage sI;
 
 	public UserInterface() {
 		super("ConnectFour");
 		interfacePanel = new InterfacePanel(WIDTH, HEIGHT);
 		colorSelection = new ColorSelectionPage(WIDTH, HEIGHT);
-		gI = new GameboardInterface();
+		gI = new GameboardInterface(this);
+		sI = new StatisticsInterfacePage();
 		add(interfacePanel);
 		// frame set up
 
@@ -111,8 +113,6 @@ public class UserInterface extends JFrame {
 				});
 			}
 
-			StatisticsInterfacePage sI = new StatisticsInterfacePage(); 
-
 			//Stat's Interface 
 			if(sI != null) {
 				JButton replay = sI.getToolBar().getRestartButton(); 
@@ -124,6 +124,7 @@ public class UserInterface extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						sI.setVisible(false);
 						gI.setVisible(true);
+						gI.reset();
 					}
 				});
 				
@@ -139,6 +140,13 @@ public class UserInterface extends JFrame {
 			
 		}
 
+	}
+	
+	public void goToStatPage() {
+		gI.setVisible(false);
+		sI.setVisible(true);
+		sI.updateNumbers();
+		add(sI);
 	}
 
 }

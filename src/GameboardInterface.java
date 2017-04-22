@@ -23,8 +23,12 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	private JButton tempBtn;
 
 	private GameBoard board;
+	
+	private UserInterface ui;
 
-	public GameboardInterface() {
+	public GameboardInterface(UserInterface ui) {
+		this.ui = ui;
+		
 		setLayout(new BorderLayout());
 
 		toolBar = new ToolBar();
@@ -96,6 +100,7 @@ public class GameboardInterface extends JPanel implements MouseListener {
 			
 			int state = board.playerClick(column);
 			if (state != GameState.NORMAL) {
+				// Figure out what message to display
 				String message = "";
 				String title = "Game Over";
 				boolean gameEnds = true;
@@ -115,11 +120,11 @@ public class GameboardInterface extends JPanel implements MouseListener {
 					gameEnds = false;
 					break;
 				}
-				//System.out.println("Showing message");
+				// Show the message
 				repaint();
 				JOptionPane.showConfirmDialog(this, message, title, JOptionPane.DEFAULT_OPTION);
 				if (gameEnds) {
-					System.out.println("Go to results.");
+					ui.goToStatPage();
 				} else {
 					GameState.playerTurn = true;
 				}
@@ -160,5 +165,10 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	// Reset the board for another game
+	public void reset() {
+		board.clearBoard();
 	}
 }
