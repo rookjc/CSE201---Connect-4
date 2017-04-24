@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,9 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MessageBox extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel message; 
 	private JButton confirmBtn; 
-	
+
 	public MessageBox(String msg, String btnStr, int width, int height) {
 		message = new JLabel(msg);
 		message.setFont(new Font("Verdana", Font.BOLD , 50));
@@ -22,10 +25,9 @@ public class MessageBox extends JPanel{
 		confirmBtn.setFont(new Font("Ubuntu", Font.ROMAN_BASELINE , 30));
 		setUpLayout(width, height); 
 	}
-	
+
 	public void setUpLayout(int width, int height) {
-		//setSize(width, height);
-		
+
 		setPreferredSize(new Dimension(width, height));
 		System.out.println(width);
 		System.out.println(height); 
@@ -33,20 +35,19 @@ public class MessageBox extends JPanel{
 		setBorder(BorderFactory.createEtchedBorder());
 		GridBagConstraints gc = new GridBagConstraints();
 
-		// constraint for win button
-		// first Button
+		// Constraint for win button
 		gc.gridy = 0; // Top to Bottom
 		gc.gridx = 0; // Left to Right
 		gc.gridwidth = 1;
 		gc.fill = GridBagConstraints.NONE;
-		// controls how much space one cell takes compare to other cells
-		// weighty controls the height proportion for the cell in 1st row
+		/* controls how much space one cell takes compare to other cells
+		   weighty controls the height proportion for the cell in 1st row */
 		gc.weightx = 1;
 		gc.weighty = 5;   
 		gc.anchor = GridBagConstraints.CENTER;
 		add(message, gc);
 
-		// draw Button
+		// Draw Button
 		gc.gridy = 1; // Top to Bottom
 		gc.gridx = 0; // Left to Right
 		gc.ipadx = width + 50;

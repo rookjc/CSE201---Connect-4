@@ -32,7 +32,7 @@ public class UserInterface extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-WIDTH/2, dim.height/2-HEIGHT/2);
-		
+
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,9 +127,9 @@ public class UserInterface extends JFrame {
 			if(sI != null) {
 				JButton replay = sI.getToolBar().getRestartButton(); 
 				JButton quit = sI.getToolBar().getQuitButton(); 
-				
+
 				replay.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						sI.setVisible(false);
@@ -137,9 +137,9 @@ public class UserInterface extends JFrame {
 						gI.reset();
 					}
 				});
-				
+
 				quit.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// If the player confirms, exit the software
@@ -157,7 +157,7 @@ public class UserInterface extends JFrame {
 			}
 		}
 	}
-	
+
 	public void goToStatPage() {
 		gI.setVisible(false);
 		remove(sI);
@@ -165,7 +165,7 @@ public class UserInterface extends JFrame {
 		sI.updateNumbers();
 		add(sI);
 	}
-	
+
 	// Change the message displayed on gI.getToolBar()
 	public void setToolbarMessage(String msg) {
 		gI.getToolBar().setTitle(msg);

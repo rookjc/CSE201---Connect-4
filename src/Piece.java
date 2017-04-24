@@ -7,38 +7,38 @@ public class Piece {
 	public static final Color YELLOW = new Color(249, 255,152);
 	public static final Color RED_WIN = new Color(125, 50, 50);
 	public static final Color YELLOW_WIN = new Color(240, 200, 120);
-	
+
 	// Where this piece is located in the board
 	public final int row, col;
-	
+
 	// Whether this is a red piece, yellow piece, or no piece (Piece.EMPTY)
 	private Color color;
-	
+
 	// Initialize an empty piece
 	public Piece(int row, int col) {
 		this.row = row;
 		this.col = col;
 		this.color = Piece.EMPTY;
 	}
-	
+
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+
 	public Color getColor() {
 		return this.color;
 	}
-	
+
 	// True iff there is no piece here
 	public boolean isEmpty() {
 		return this.color.equals(Piece.EMPTY);
 	}
-	
+
 	// True iff the human's piece is here
 	public boolean isHuman() {
 		return this.color.equals(GameState.playerIsRed ? Piece.RED : Piece.YELLOW);
 	}
-	
+
 	// True iff the computer's piece is here
 	public boolean isComputer() {
 		return this.color.equals(GameState.playerIsRed ? Piece.YELLOW : Piece.RED);

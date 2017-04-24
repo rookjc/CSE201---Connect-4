@@ -9,28 +9,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ToolBar extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel title; 
 	private JButton restartButton;
 	private JButton quitButton;
-	
+
 	public ToolBar() {
 		setBorder(BorderFactory.createEtchedBorder());
-				
-		//restart button 
+
+		// Restart button 
 		restartButton = new JButton("Restart");
 		restartButton.setSize(200, 50);
 		restartButton.setBackground(new Color(253,105,105));
 		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
-		
-		// label text could change as the game goes 
+
+		// Label text indicating that player can move.
 		title = new JLabel("    Waiting for player...");
-		
-		// quit button
+
+		// Quit button
 		quitButton = new JButton("Quit"); 
 		quitButton.setSize(200, 50);
 		quitButton.setBackground(new Color(249, 255,152));
 		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
-		
+
 		layoutComponent();
 		title.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 	}
@@ -39,33 +43,33 @@ public class ToolBar extends JPanel {
 		setBackground(new Color(118, 142, 239));
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
-		
-		//restart button 
+
+		// Restart button 
 		gc.gridx = 0; 
 		gc.gridy = 0; 
-		
+
 		gc.weightx = 0.3; 
 		gc.ipadx = 60;
 		gc.ipady = 30; 
 		gc.fill = GridBagConstraints.NONE;
 		gc.anchor = GridBagConstraints.LINE_START;
-		
+
 		add(restartButton, gc);
-		
-		// title
+
+		// Title
 		gc.gridx = 1; 
 		gc.gridy = 0; 
-		
+
 		gc.weightx = 0.8; 
 		gc.ipadx = 50; 
 		gc.anchor = GridBagConstraints.CENTER;
 		add(title, gc);
-		
-		
-		//second button 
+
+
+		// Second button 
 		gc.gridx = 3; 
 		gc.gridy = 0; 
-		
+
 		gc.weightx = 0.3; 
 		gc.ipadx = 95;
 		gc.anchor = GridBagConstraints.LINE_END; 
@@ -79,7 +83,7 @@ public class ToolBar extends JPanel {
 	public JLabel getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title.setText(title);
 	}
