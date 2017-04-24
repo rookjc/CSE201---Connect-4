@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -7,13 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import com.sun.xml.internal.messaging.saaj.soap.GifDataContentHandler;
-
-import sun.net.www.content.image.gif;
 
 public class UserInterface extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static final int WIDTH = 800;
 	static final int HEIGHT = 700;
 
@@ -29,7 +27,7 @@ public class UserInterface extends JFrame {
 		gI = new GameboardInterface(this);
 		sI = new StatisticsInterfacePage();
 		add(interfacePanel);
-		// frame set up
+		// Frame Set-up
 
 		setSize(WIDTH, HEIGHT);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,7 +37,7 @@ public class UserInterface extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// controller
+		// Controller
 		control();
 	}
 
@@ -68,9 +66,7 @@ public class UserInterface extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					colorSelection.setVisible(false);
 					gI.setVisible(true);
-					GameState.playerIsRed = true;	// set flag
-					// temporary adding gI only , but needs more logical
-					// implementation
+					GameState.playerIsRed = true;	// Set Flag
 					add(gI);
 				}
 			});
@@ -82,20 +78,17 @@ public class UserInterface extends JFrame {
 					colorSelection.setVisible(false);
 					gI.setVisible(true);
 					GameState.playerIsRed = false;	// set flag
-					// temporary adding gI only , but needs more logical
-					// implementation
 					add(gI);
 				}
 			});
 
-			// into gameBoard
 			JButton restartBtn = gI.getToolBar().getRestartButton();
 			if (restartBtn != null && restartBtn.getText().equals("Restart")) {
 				gI.getToolBar().getRestartButton().addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						// If the player confirms, reset the board to an empty state
+						// If the player confirms, reset the board to an empty state.
 						GameState.playerTurn = false;
 						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to restart?",
 								"Confirm Restart", JOptionPane.OK_CANCEL_OPTION);
@@ -110,14 +103,13 @@ public class UserInterface extends JFrame {
 				});
 			}
 
-			// quit button for gameBoard
-			// tentatively set to quit
+			// Quit button for gameBoard.
 			JButton quitBtn = gI.getToolBar().getQuitButton();
 			if (quitBtn != null && quitBtn.getText().equals("Quit")) {
 				gI.getToolBar().getQuitButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						// If the player confirms, exit the software
+						// If the player confirms, exit the software.
 						GameState.playerTurn = false;
 						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to quit?",
 								"Confirm Quit", JOptionPane.OK_CANCEL_OPTION);
@@ -131,7 +123,7 @@ public class UserInterface extends JFrame {
 				});
 			}
 
-			//Stat's Interface 
+			// Stats Interface 
 			if(sI != null) {
 				JButton replay = sI.getToolBar().getRestartButton(); 
 				JButton quit = sI.getToolBar().getQuitButton(); 
@@ -163,10 +155,7 @@ public class UserInterface extends JFrame {
 					}
 				});
 			}
-			
-			
 		}
-
 	}
 	
 	public void goToStatPage() {
