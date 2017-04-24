@@ -43,23 +43,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 
 		setBackground(bg);
 		
-//		for(int i = 0; i < 7; i++) {
-//			JButton column = new JButton();
-//			column.setPreferredSize(new Dimension(105, 670));
-//
-//			column.setBackground(Color.PINK);
-//
-//			final int col = i;
-//			column.addActionListener(new ActionListener() {
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					board.playerClick(col);
-//				}
-//			});
-//
-//			this.add(column);
-//		}
-		
 		addMouseListener(this);
 	}
 
