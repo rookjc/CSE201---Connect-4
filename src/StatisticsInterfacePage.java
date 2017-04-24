@@ -23,7 +23,7 @@ public class StatisticsInterfacePage extends JPanel{
 
 		toolBar.getTitle().setText("    Results");
 
-		toolBar.getRestartButton().setText("Restart");
+		toolBar.getRestartButton().setText("Play Again");
 
 		toolBar.getQuitButton().setText("Quit");
 
