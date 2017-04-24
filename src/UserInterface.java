@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.sun.xml.internal.messaging.saaj.soap.GifDataContentHandler;
@@ -94,9 +95,17 @@ public class UserInterface extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						gI.getBoard().clearBoard();
-						gI.setVisible(false);
-						colorSelection.setVisible(true);
+						// If the player confirms, reset the board to an empty state
+						GameState.playerTurn = false;
+						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to restart?",
+								"Confirm Restart", JOptionPane.OK_CANCEL_OPTION);
+						System.out.println(n);
+						if (n == 0) {
+							gI.reset();
+							gI.repaint();
+						} else {
+							GameState.playerTurn = true;
+						}
 					}
 				});
 			}
@@ -108,7 +117,16 @@ public class UserInterface extends JFrame {
 				gI.getToolBar().getQuitButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
+						// If the player confirms, exit the software
+						GameState.playerTurn = false;
+						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to quit?",
+								"Confirm Quit", JOptionPane.OK_CANCEL_OPTION);
+						System.out.println(n);
+						if (n == 0) {
+							System.exit(0);
+						} else {
+							GameState.playerTurn = true;
+						}
 					}
 				});
 			}
@@ -132,7 +150,16 @@ public class UserInterface extends JFrame {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
+						// If the player confirms, exit the software
+						GameState.playerTurn = false;
+						int n = JOptionPane.showConfirmDialog(sI, "Are you sure you want to quit?",
+								"Confirm Quit", JOptionPane.OK_CANCEL_OPTION);
+						System.out.println(n);
+						if (n == 0) {
+							System.exit(0);
+						} else {
+							GameState.playerTurn = true;
+						}
 					}
 				});
 			}
@@ -144,9 +171,15 @@ public class UserInterface extends JFrame {
 	
 	public void goToStatPage() {
 		gI.setVisible(false);
+		remove(sI);
 		sI.setVisible(true);
 		sI.updateNumbers();
 		add(sI);
+	}
+	
+	// Change the message displayed on gI.getToolBar()
+	public void setToolbarMessage(String msg) {
+		gI.getToolBar().setTitle(msg);
 	}
 
 }

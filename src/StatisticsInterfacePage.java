@@ -15,11 +15,10 @@ public class StatisticsInterfacePage extends JPanel{
 	public StatisticsInterfacePage() {
 		setLayout(new BorderLayout());
 		
-		toolBar = new ToolBar(); 
+		toolBar = new ToolBar();
 		add(toolBar, BorderLayout.NORTH);
 		
-		toolBar.getTitle().setText("Result");
-		toolBar.getTitle().setFont(new Font("Comic Sans MS", Font.ROMAN_BASELINE, 50));
+		toolBar.getTitle().setText("Results");
 		 
 		toolBar.getRestartButton().setText("Play Again");
 		
@@ -27,8 +26,7 @@ public class StatisticsInterfacePage extends JPanel{
 		
 		st = new StatisticsTokenList(GameState.getWinPercent(), GameState.getDrawPercent(), GameState.getLosePercent(), 
 						new Color(249, 255,152), new Color(253,105,105));
-		
-		st.setWinColor(Color.GREEN);
+
 		add(st);  
 		
 		setBackground(new Color(118, 142, 239));

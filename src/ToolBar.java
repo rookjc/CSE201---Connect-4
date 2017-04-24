@@ -23,7 +23,7 @@ public class ToolBar extends JPanel {
 		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
 		// label text could change as the game goes 
-		title = new JLabel("??");  
+		title = new JLabel("Waiting for player...");  
 		
 		
 		// quit button
@@ -32,6 +32,7 @@ public class ToolBar extends JPanel {
 		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
 		layoutComponent();
+		title.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 	}
 
 	private void layoutComponent() {

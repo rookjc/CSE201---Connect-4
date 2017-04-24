@@ -107,12 +107,15 @@ public class GameboardInterface extends JPanel implements MouseListener {
 				switch (state) {
 				case GameState.PLAYERLOST:
 					message = "You lost!";
+					ui.setToolbarMessage("Computer Wins!");
 					break;
 				case GameState.PLAYERWON:
 					message = "You won!";
+					ui.setToolbarMessage("Human Wins!");
 					break;
 				case GameState.DRAW:
 					message = "The board is full, no one wins!";
+					ui.setToolbarMessage("Draw!");
 					break;
 				case GameState.INVALIDMOVE:
 					message = "Oops! That isn't a valid move.";
@@ -146,10 +149,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	public ToolBar getToolBar() {
 		return toolBar;
 	}
-	
-	public GameBoard getBoard(){
-		return board;
-	}
 
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
@@ -170,5 +169,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	// Reset the board for another game
 	public void reset() {
 		board.clearBoard();
+		toolBar.setTitle("Waiting for player...");
 	}
 }
