@@ -5,6 +5,8 @@ public class Piece {
 	public static final Color EMPTY = Color.WHITE;
 	public static final Color RED = new Color(253, 105, 105);
 	public static final Color YELLOW = new Color(249, 255,152);
+	public static final Color RED_WIN = new Color(125, 50, 50);
+	public static final Color YELLOW_WIN = new Color(240, 200, 120);
 	
 	// Where this piece is located in the board
 	public final int row, col;

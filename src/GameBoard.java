@@ -93,11 +93,11 @@ public class GameBoard {
 		for (Slot s : slots) {
 			Color winner = s.getWinningColor();
 			if (winner.equals(Piece.RED)) {
-				// TODO: show where the win is first
+				s.setAllColors(Piece.RED_WIN);	// Show where the win is
 				GameState.addRedWin();
 				return GameState.playerIsRed ? GameState.PLAYERWON : GameState.PLAYERLOST;
 			} else if (winner.equals(Piece.YELLOW)) {
-				// TODO: show where the win is first
+				s.setAllColors(Piece.YELLOW_WIN);	// Show where the win is
 				GameState.addYellowWin();
 				return GameState.playerIsRed ? GameState.PLAYERLOST : GameState.PLAYERWON;
 			}

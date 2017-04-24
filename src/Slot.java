@@ -145,4 +145,11 @@ public class Slot {
 		return getFrequencyOfHuman() == 0;
 	}
 	
+	// Set all pieces in the slot to this color
+	public void setAllColors(Color c) {
+		for (Piece p : pieces) {
+			p.setColor(c);
+		}
+	}
+	
 }
