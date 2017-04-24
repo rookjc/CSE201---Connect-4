@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 
 public class StatisticsInterfacePage extends JPanel{
 	
-	
 	private ToolBar toolBar;
 	
 	private StatisticsTokenList st;
@@ -18,9 +17,9 @@ public class StatisticsInterfacePage extends JPanel{
 		toolBar = new ToolBar();
 		add(toolBar, BorderLayout.NORTH);
 		
-		toolBar.getTitle().setText("Results");
+		toolBar.getTitle().setText("    Results");
 		 
-		toolBar.getRestartButton().setText("Play Again");
+		toolBar.getRestartButton().setText("Restart");
 		
 		toolBar.getQuitButton().setText("Quit");
 		

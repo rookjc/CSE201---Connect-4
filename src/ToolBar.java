@@ -1,7 +1,5 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -17,12 +15,10 @@ public class ToolBar extends JPanel {
 	
 	public ToolBar() {
 		setBorder(BorderFactory.createEtchedBorder());
-		
-		Dimension buttonSize = new Dimension(200,50);
-		
+				
 		//restart button 
 		restartButton = new JButton("Restart");
-		restartButton.setPreferredSize(buttonSize);
+		restartButton.setSize(200, 50);
 		restartButton.setBackground(new Color(253,105,105));
 		restartButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
@@ -31,7 +27,7 @@ public class ToolBar extends JPanel {
 		
 		// quit button
 		quitButton = new JButton("Quit"); 
-		quitButton.setPreferredSize(buttonSize);
+		quitButton.setSize(200, 50);
 		quitButton.setBackground(new Color(249, 255,152));
 		quitButton.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 30));
 		
