@@ -46,9 +46,9 @@ public class ComputerPlayer {
 					(board.getColumnHeight(col) < 6) ? MovePriority.NORMAL : MovePriority.FULL;
 		}
 		
-		// Factor in information from all slots (updating columnPriorities)
-		for (Slot s : board.getSlots()) {
-			evaluateSlot(s);
+		// Factor in information from all groups (updating columnPriorities)
+		for (Groups s : board.getGroups()) {
+			evaluateGroup(s);
 		}
 	}
 	
@@ -98,27 +98,27 @@ public class ComputerPlayer {
 		}
 	}
 	
-	// See if any moves into this slot are worth considering / specifically avoiding
-	private void evaluateSlot(Slot s) {
+	// See if any moves into this group are worth considering / specifically avoiding
+	private void evaluateGroup(Groups s) {
 		if (s.isWinnable()) {
-			// Get the number of each player's pieces in this slot. One of them will be 0.
+			// Get the number of each player's pieces in this group. One of them will be 0.
 			int nHumanPieces = s.getFrequencyOfHuman();
 			int nComputerPieces = s.getFrequencyOfComputer();
 			// Order of if-statements doesn't really matter here
 			if (nHumanPieces == 3) {
-				// Find the last piece needed to completely fill this slot
+				// Find the last piece needed to completely fill this group
 				Piece lastPiece = s.getEmptyPiece();
 				int lastPieceBuildUp = board.getBuildUp(lastPiece);
 				if(lastPieceBuildUp == 0) {
-					// Block the human from finishing this slot and winning
+					// Block the human from finishing this group and winning
 					mark(lastPiece.col, MovePriority.BLOCK);
 				} else if (lastPieceBuildUp == 1) {
-					// Don't allow the human to finish the slot in the next turn
+					// Don't allow the human to finish the group in the next turn
 					mark(lastPiece.col, MovePriority.LOSE);
 				}
 			} 
 			else if (nComputerPieces == 3) {
-				// Find the last piece needed to completely fill this slot
+				// Find the last piece needed to completely fill this group
 				Piece lastPiece = s.getEmptyPiece();
 				int lastPieceBuildUp = board.getBuildUp(lastPiece);
 				if(lastPieceBuildUp == 0) {
@@ -138,7 +138,7 @@ public class ComputerPlayer {
 				}
 			}
 		}
-		// If the slot cannot be won in, don't change anything as a result of it
+		// If the group cannot be won in, don't change anything as a result of it
 	}
 	
 }

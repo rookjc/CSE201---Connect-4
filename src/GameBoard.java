@@ -1,10 +1,10 @@
 import java.awt.Color;
 
-// Represents the current state of the game board, with 42 Pieces and 69 4-in-a-row Slots
+// Represents the current state of the game board, with 42 Pieces and 69 4-in-a-row Groups
 // TODO: make this inherit from Panel
 public class GameBoard {
 	private Piece[][] board;
-	private Slot[] slots;
+	private Groups[] groups;
 	private ComputerPlayer computer;
 	
 	// Constructor for creating an empty GameBoard, along with all its component Pieces
@@ -17,24 +17,24 @@ public class GameBoard {
 			}
 		}
 		
-		this.slots = new Slot[69];
-		int slotNum = 0;
-		// Generate all possible slots into this.slots array
+		this.groups = new Groups[69];
+		int groupNum = 0;
+		// Generate all possible groups into this.groups array
 		for (int row = 0; row < 6; row++) {		// Horizontal
 			for (int col = 0; col < 4; col++)
-				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.HORIZONTAL);
+				this.groups[groupNum++] = new Groups(this, this.getPiece(row, col), Groups.HORIZONTAL);
 		}
 		for (int row = 0; row < 3; row++) {		// Vertical
 			for (int col = 0; col < 7; col++)
-				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.VERTICAL);
+				this.groups[groupNum++] = new Groups(this, this.getPiece(row, col), Groups.VERTICAL);
 		}
 		for (int row = 0; row < 3; row++) {		// Diagonal up
 			for (int col = 0; col < 4; col++)
-				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.DIAGONAL_UP);
+				this.groups[groupNum++] = new Groups(this, this.getPiece(row, col), Groups.DIAGONAL_UP);
 		}
 		for (int row = 3; row < 6; row++) {		// Diagonal down
 			for (int col = 0; col < 4; col++)
-				this.slots[slotNum++] = new Slot(this, this.getPiece(row, col), Slot.DIAGONAL_DOWN);
+				this.groups[groupNum++] = new Groups(this, this.getPiece(row, col), Groups.DIAGONAL_DOWN);
 		}
 		
 		// Create computer player
@@ -89,8 +89,8 @@ public class GameBoard {
 	
 	// Check if either player has won, or the board is full, giving the proper GameState constant back
 	public int checkGameOver() {
-		// Check all potential slots for wins
-		for (Slot s : slots) {
+		// Check all potential groups for wins
+		for (Groups s : groups) {
 			Color winner = s.getWinningColor();
 			if (winner.equals(Piece.RED)) {
 				s.setAllColors(Piece.RED_WIN);	// Show where the win is
@@ -138,8 +138,8 @@ public class GameBoard {
 	}
 	
 	// Getter for the slot array
-	public Slot[] getSlots() {
-		return this.slots;
+	public Groups[] getGroups() {
+		return this.groups;
 	}
 	
 }
