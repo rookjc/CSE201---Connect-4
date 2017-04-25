@@ -1,14 +1,14 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class RoundButton extends JButton {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Color color;
 	private Color pressedBackgroundColor; 
 	public RoundButton(String label, Color color) {

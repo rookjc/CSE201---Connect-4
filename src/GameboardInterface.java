@@ -1,23 +1,22 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Rectangle;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class GameboardInterface extends JPanel implements MouseListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ToolBar toolBar;
 
 	private JButton tempBtn;
@@ -152,6 +151,6 @@ public class GameboardInterface extends JPanel implements MouseListener {
 	// Reset the board for another game
 	public void reset() {
 		board.clearBoard();
-		toolBar.setTitle("Waiting for player...");
+		toolBar.setTitle("    Waiting for player...");
 	}
 }
