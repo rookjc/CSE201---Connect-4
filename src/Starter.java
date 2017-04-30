@@ -9,7 +9,6 @@ public class Starter {
 			@Override
 			public void run() {
 				UserInterface uf = new UserInterface(); 
-				System.out.println("Current Thread: " + Thread.currentThread());
 			}
 		});
 	}
