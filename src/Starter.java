@@ -8,8 +8,8 @@ public class Starter {
 
 			@Override
 			public void run() {
-				@SuppressWarnings("unused")
 				UserInterface uf = new UserInterface(); 
+				System.out.println("Current Thread: " + Thread.currentThread());
 			}
 		});
 	}
