@@ -2,7 +2,11 @@ import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
-// Stub class to be implemented
+/**
+ * Represents 4 Piece objects in a row, where either player could potentially win
+ * @author Hayden Fogle, Kai Li, Joel Minton, Jayson Rook
+ * @version 1.0
+ */
 public class Groups {
 	// Constants for which of the 4 directions a group can be oriented in
 	public static final int HORIZONTAL = 0;
@@ -13,7 +17,13 @@ public class Groups {
 	public final int orientation;
 	private Piece[] pieces;
 
-	// Generate a group with the four pieces specified by an origin and an orientation
+	/**
+	 * Generate a group with the four pieces specified by an origin and an orientation
+	 * @param board the GameBoard object the pieces are all from
+	 * @param origin the first Piece
+	 * @param orientation the Groups.[direction] constant representing the position
+	 * 			of subsequent Pieces relative to the first
+	 */
 	public Groups(GameBoard board, Piece origin, int orientation) {
 		this.orientation = orientation;
 
@@ -40,7 +50,14 @@ public class Groups {
 		this.pieces = collectPieces(board, origin, dx, dy);
 	}
 
-	// Extract four aligned pieces based on origin piece and separations dx and dy
+	/**
+	 * Extract four aligned pieces based on an origin Piece and displacements dx and dy
+	 * @param board the GameBoard the Pieces are all from
+	 * @param origin the first Piece
+	 * @param dx the change in x-coordinate (column #) between adjacent Pieces
+	 * @param dy the change in y-coordinate (row #) between adjacent Pieces
+	 * @return an array of the 4 Pieces in this newly defined group
+	 */
 	public static Piece[] collectPieces(GameBoard board, Piece origin, int dx, int dy) {
 		// Get coordinates (row & column) of origin
 		int originX = origin.col;
@@ -54,7 +71,10 @@ public class Groups {
 		return result;
 	}
 
-	// Return one of the pieces in this group that is empty, or null if none exists
+	/**
+	 * Return one of the Pieces in this group that is empty, or null if none exists
+	 * @return an empty Piece
+	 */
 	public Piece getEmptyPiece() {
 		for (Piece p : pieces) {
 			if (p.isEmpty())
@@ -63,7 +83,10 @@ public class Groups {
 		return null;
 	}
 
-	// Gives a list of all empty pieces in the group
+	/**
+	 * Gives a List of all empty Pieces in the Group
+	 * @return a LinkedList containing all (max 4) empty Piece objects
+	 */
 	public List<Piece> getEmptyPieces() {
 		List<Piece> result = new LinkedList<Piece>();
 		for (Piece p : pieces) {
@@ -72,8 +95,11 @@ public class Groups {
 		}
 		return result;
 	}
-
-	// Get the color of the player that has won in this group (or Piece.EMPTY if neither)
+	
+	/**
+	 * Get the color of the player that has won in this group (or Piece.EMPTY if neither)
+	 * @return Piece.RED, Piece.YELLOW, or Piece.EMPTY depending on who has one this Group
+	 */
 	public Color getWinningColor() {
 		boolean humanWins = pieces[0].isHuman();
 		for (Piece p : pieces) {
@@ -87,7 +113,10 @@ public class Groups {
 		return (humanWins ^ GameState.playerIsRed ? Piece.YELLOW : Piece.RED);
 	}
 
-	// Returns true if there are no pieces in the group
+	/**
+	 * Detect whether there are any empty Pieces left in this Group
+	 * @return true iff one or more Pieces are empty
+	 */
 	public boolean isEmpty() {
 		for (Piece p : pieces) {
 			if (!p.isEmpty())
@@ -96,7 +125,10 @@ public class Groups {
 		return true;
 	}
 
-	// Returns true if there are 4 pieces in the group
+	/**
+	 * Detect whether all Pieces in the Group are full (the opposite of isEmpty())
+	 * @return true iff the Group is full
+	 */
 	public boolean isFull() {
 		for (Piece p : pieces) {
 			if (p.isEmpty())
@@ -105,7 +137,10 @@ public class Groups {
 		return true;
 	}
 
-	// Counts how many of the human's pieces are in this group
+	/**
+	 * Counts how many of the human's Pieces are in this Group
+	 * @return the count of human Pieces (0-4)
+	 */
 	public int getFrequencyOfHuman() {
 		int count = 0;
 		for (Piece p : pieces) {
@@ -115,7 +150,10 @@ public class Groups {
 		return count;
 	}
 
-	// Counts how many of the computer's pieces are in this group
+	/**
+	 * Counts how many of the computer's Pieces are in this Group
+	 * @return the count of computer Pieces (0-4)
+	 */
 	public int getFrequencyOfComputer() {
 		int count = 0;
 		for (Piece p : pieces) {
@@ -125,7 +163,10 @@ public class Groups {
 		return count;
 	}
 
-	// Counts how many empty pieces are in this group
+	/**
+	 * Counts how many empty Pieces are in this Group
+	 * @return the count of empty Pieces (0-4)
+	 */
 	public int getFrequencyOfEmpty() {
 		int count = 0;
 		for (Piece p : pieces) {
@@ -135,17 +176,26 @@ public class Groups {
 		return count;
 	}
 
-	// True iff someone could still win in this group
+	/**
+	 * Determine whether either player could still win here
+	 * @return True iff someone could still win
+	 */
 	public boolean isWinnable() {
 		return getFrequencyOfHuman() == 0 || getFrequencyOfComputer() == 0;
 	}
 
-	// True iff the computer can still win this this group
+	/**
+	 * Determine whether the computer player could still win here
+	 * @return True iff the computer could still win
+	 */
 	public boolean computerCanWin() {
 		return getFrequencyOfHuman() == 0;
 	}
 
-	// Set all pieces in the group to this color
+	/**
+	 * Set all pieces in the group to this color
+	 * @param c the color value to assign them
+	 */
 	public void setAllColors(Color c) {
 		for (Piece p : pieces) {
 			p.setColor(c);
