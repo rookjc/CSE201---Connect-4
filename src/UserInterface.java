@@ -7,10 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * UserInterface, the controller class which handles the 
+ * transitioning of the game pages 
+ * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+ * @version 1.0 
+ * */
 public class UserInterface extends JFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	static final int WIDTH = 800;
 	static final int HEIGHT = 700;
@@ -41,6 +45,9 @@ public class UserInterface extends JFrame {
 		control();
 	}
 
+	/**
+	 * Hanle control of the transitioning between interfaces 
+	 * */
 	private void control() {
 		if (interfacePanel != null && colorSelection != null && gI != null) {
 			interfacePanel.getPlayButton().addActionListener(new ActionListener() {
@@ -158,6 +165,9 @@ public class UserInterface extends JFrame {
 		}
 	}
 
+	/**
+	 * Method for nevigating to statistic page 
+	 * */
 	public void goToStatPage() {
 		gI.setVisible(false);
 		remove(sI);
@@ -166,7 +176,10 @@ public class UserInterface extends JFrame {
 		add(sI);
 	}
 
-	// Change the message displayed on gI.getToolBar()
+	/**
+	 * Method to change the display message on the toolbar as the game progresses 
+	 * @return msg 
+	 * */
 	public void setToolbarMessage(String msg) {
 		gI.getToolBar().setTitle(msg);
 	}

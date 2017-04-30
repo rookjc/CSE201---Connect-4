@@ -3,12 +3,14 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+/**
+ * StatisticsInterface for displaying Game statistics  
+ * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+ * @version 1.0 
+ * */
 
 public class StatisticsInterfacePage extends JPanel{
-
-	/**
-	 * 
-	 */
+ 
 	private static final long serialVersionUID = 1L;
 
 	private ToolBar toolBar;
@@ -35,10 +37,17 @@ public class StatisticsInterfacePage extends JPanel{
 		setBackground(new Color(118, 142, 239));
 	}
 
+	/**
+	 * get Tool Bar 
+	 * @return toolBar toolBar of Statistics Page 
+	 * */
 	public ToolBar getToolBar() {
 		return toolBar;
 	}
-
+	
+	/**
+	 * update statistics number in the statistics tokens 
+	 * */
 	public void updateNumbers () {
 		remove(st);
 		st = new StatisticsTokenList(GameState.getWinPercent(), GameState.getDrawPercent(), GameState.getLosePercent(), 

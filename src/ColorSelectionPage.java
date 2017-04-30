@@ -4,10 +4,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * ColorSection Page for player to choose token color 
+ * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+ * @version 1.0 
+ * */
+
 public class ColorSelectionPage extends JPanel{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JLabel mainPageTitle;
 	private JButton redButton;
@@ -35,18 +39,34 @@ public class ColorSelectionPage extends JPanel{
 		layOut.layoutComponents();
 	}
 
+	/**
+	 * get Red Button 
+	 * @return red Button 
+	 * */
 	public JButton getRedButton() {
 		return redButton;
 	}
 
+	/**
+	 * set Red Button 
+	 * @param redButton red Button to be passed in 
+	 * */
 	public void setRedButton(JButton redButton) {
 		this.redButton = redButton;
 	}
 
+	/**
+	 * get yellow Button 
+	 * @return yellowButton 
+	 * */
 	public JButton getYellowButton() {
 		return yellowButton;
 	}
 
+	/**
+	 * set Yellow Button 
+	 * @param yellowButton button to be passed in 
+	 * */
 	public void setYellowButton(JButton yellowButton) {
 		this.yellowButton = yellowButton;
 	}

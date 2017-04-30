@@ -4,11 +4,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
-public class StatisticsTokenList extends JPanel {
+/**
+ * StatisticTokenList, a layout page for statistics page interface 
+ * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+ * @version 1.0 
+ * */
 
-	/**
-	 * 
-	 */
+public class StatisticsTokenList extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Color winColor; 
 	private Color lossColor; 
@@ -37,6 +39,9 @@ public class StatisticsTokenList extends JPanel {
 		setUpStatList();
 	}
 
+	/**
+	 * set up layout for the statistic layout tokens 
+	 * */
 	public void setUpStatList() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
@@ -73,6 +78,10 @@ public class StatisticsTokenList extends JPanel {
 		add(loseStatBtn, gc);
 	}
 
+	/**
+	 * get winner color 
+	 * @return wincolor winner color 
+	 * */
 	public Color getWinColor() {
 		return winColor;
 	}
@@ -82,10 +91,18 @@ public class StatisticsTokenList extends JPanel {
 		winStatBtn.setColor(winColor);
 	}
 
+	/**
+	 * get LossColor 
+	 * @return lossColor loser color 
+	 * */
 	public Color getLossColor() {
 		return lossColor;
 	}
 
+	/**
+	 * set Loss Color 
+	 * @param lossColor loss color to be passed in 
+	 * */
 	public void setLossColor(Color lossColor) {
 		this.lossColor = lossColor;
 		loseStatBtn.setColor(lossColor);

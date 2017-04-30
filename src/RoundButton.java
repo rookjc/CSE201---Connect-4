@@ -3,10 +3,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JButton;
 
+/**
+ * RoundButton, the class that customized the making of round button
+ * transitioning of the game pages 
+ * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+ * @version 1.0 
+ * */
 public class RoundButton extends JButton {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Color color;
@@ -46,12 +50,6 @@ public class RoundButton extends JButton {
 		}
 		g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
 
-		// ANTIALIASING
-		// Graphics2D g2d = (Graphics2D)g.create();
-		// RenderingHints hints = new RenderingHints(
-		// RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON
-		// );
-		// g2d.setRenderingHints(hints);
 		super.paintComponent(g);
 	}
 
@@ -61,29 +59,27 @@ public class RoundButton extends JButton {
 		
 	}
 
+	/**
+	 * @return color color of the button 
+	 * */
 	public Color getColor() {
 		return color;
 	}
 
+	/**
+	 * @param color color the the button 
+	 * */
 	public void setColor(Color color) {
 		this.color = color; 
 	}
-
+	
+	
+	/**
+	 * set press color 
+	 * @param pressedBackgroundColor press color to be changed 
+	 * */
 	public void setPressedBackgroundColor(Color pressedBackgroundColor) {
         this.pressedBackgroundColor = pressedBackgroundColor;
         repaint(); 
-    }
-	
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * JFrame.setDefaultLookAndFeelDecorated(true); JFrame frame = new
-	 * JFrame("Rounded Button Example"); frame.setLayout(new FlowLayout());
-	 * 
-	 * JButton b1 = new RoundButton("B1"); JButton b2 = new RoundButton("B2");
-	 * 
-	 * frame.add(b1); frame.add(b2);
-	 * 
-	 * frame.setSize(300, 150); frame.setVisible(true); }
-	 */
+    } 
 }
