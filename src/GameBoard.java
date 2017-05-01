@@ -125,8 +125,9 @@ public class GameBoard {
 				return GameState.playerIsRed ? GameState.PLAYERWON : GameState.PLAYERLOST;
 			} else if (winner.equals(Piece.YELLOW)) {
 				// Show where the win is
-				GameState.addYellowWin();
+				s.setAllColors(Piece.YELLOW_WIN);
 				// Update the win/loss count and return the state
+				GameState.addYellowWin();
 				return GameState.playerIsRed ? GameState.PLAYERLOST : GameState.PLAYERWON;
 			}
 		}
