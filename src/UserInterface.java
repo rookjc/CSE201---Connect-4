@@ -42,7 +42,7 @@ public class UserInterface extends JFrame {
 	}
 
 	/**
-	 * Hanle control of the transitioning between interfaces 
+	 * Handle control of the transitioning between interfaces 
 	 * */
 	private void control() {
 		if (interfacePanel != null && colorSelection != null && gI != null) {
@@ -95,7 +95,6 @@ public class UserInterface extends JFrame {
 						GameState.playerTurn = false;
 						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to restart?",
 								"Confirm Restart", JOptionPane.OK_CANCEL_OPTION);
-						System.out.println(n);
 						if (n == 0) {
 							gI.reset();
 							gI.repaint();
@@ -116,7 +115,6 @@ public class UserInterface extends JFrame {
 						GameState.playerTurn = false;
 						int n = JOptionPane.showConfirmDialog(gI, "Are you sure you want to quit?",
 								"Confirm Quit", JOptionPane.OK_CANCEL_OPTION);
-						System.out.println(n);
 						if (n == 0) {
 							System.exit(0);
 						} else {
@@ -149,7 +147,6 @@ public class UserInterface extends JFrame {
 						GameState.playerTurn = false;
 						int n = JOptionPane.showConfirmDialog(sI, "Are you sure you want to quit?",
 								"Confirm Quit", JOptionPane.OK_CANCEL_OPTION);
-						System.out.println(n);
 						if (n == 0) {
 							System.exit(0);
 						} else {
@@ -162,7 +159,7 @@ public class UserInterface extends JFrame {
 	}
 
 	/**
-	 * Method for nevigating to statistic page 
+	 * Method for navigating to the statistics page 
 	 * */
 	public void goToStatPage() {
 		gI.setVisible(false);
@@ -173,17 +170,20 @@ public class UserInterface extends JFrame {
 	}
 
 	/**
-	 * Method to change the display message on the toolbar as the game progresses 
-	 * @return msg 
-	 * */
+	 * Method to change the display message on the toolbar as the game progresses
+	 * @param msg the new message for the toolbar
+	 */
 	public void setToolbarMessage(String msg) {
 		gI.getToolBar().setTitle(msg);
 	}
 	
+	/**
+	 * Private subclass for the toolbar interface, which has a title message and two
+	 * buttons for restarting or quitting the game
+	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+	 * @version 1.0 
+	 */
 	private class ToolBar extends JPanel {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private JLabel title; 
 		private JButton restartButton;
@@ -269,8 +269,7 @@ public class UserInterface extends JFrame {
 	 * StatisticTokenList, a layout page for statistics page interface 
 	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
 	 * @version 1.0 
-	 * */
-
+	 */
 	private class StatisticsTokenList extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private RoundButton winStatBtn;
@@ -297,8 +296,8 @@ public class UserInterface extends JFrame {
 		}
 
 		/**
-		 * set up layout for the statistic layout tokens 
-		 * */
+		 * Set up layout for the statistic layout tokens 
+		 */
 		public void setUpStatList() {
 			setLayout(new GridBagLayout());
 			GridBagConstraints gc = new GridBagConstraints();
@@ -342,8 +341,7 @@ public class UserInterface extends JFrame {
 	 * StatisticsInterface for displaying Game statistics  
 	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
 	 * @version 1.0 
-	 * */
-
+	 */
 	private class StatisticsInterfacePage extends JPanel{
 	 
 		private static final long serialVersionUID = 1L;
@@ -375,7 +373,7 @@ public class UserInterface extends JFrame {
 		/**
 		 * get Tool Bar 
 		 * @return toolBar toolBar of Statistics Page 
-		 * */
+		 */
 		public ToolBar getToolBar() {
 			return toolBar;
 		}
@@ -396,12 +394,12 @@ public class UserInterface extends JFrame {
 	 * transitioning of the game pages 
 	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
 	 * @version 1.0 
-	 * */
+	 */
 	private class RoundButton extends JButton {
 		
 		private static final long serialVersionUID = 1L;
-		
 		private Color pressedBackgroundColor; 
+		
 		public RoundButton(String label, Color color) {
 			super(label);
 			setBackground(color);
@@ -446,7 +444,7 @@ public class UserInterface extends JFrame {
 		}
 
 		/**
-		 * set press color 
+		 * Set press color 
 		 * @param pressedBackgroundColor press color to be changed 
 		 * */
 		public void setPressedBackgroundColor(Color pressedBackgroundColor) {
@@ -455,6 +453,11 @@ public class UserInterface extends JFrame {
 	    } 
 	}
 	
+	/**
+	 * Private subclass to arrange buttons on the first 2 menu pages
+	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+	 * @version 1.0 
+	 */
 	private class LayoutSetup {
 		private JLabel titleLabel;
 		private JButton btn1;
@@ -510,10 +513,12 @@ public class UserInterface extends JFrame {
 		
 	}
 	
+	/**
+	 * Private subclass to create buttons on starting page
+	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+	 * @version 1.0 
+	 */
 	private class InterfacePanel extends JPanel {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private JLabel mainPageTitle;
 		private JButton playButton;
@@ -547,13 +552,14 @@ public class UserInterface extends JFrame {
 			return exitButton;
 		}
 
-		
 	}
 	
+	/**
+	 * Interface for the actual playing area, which draws pieces and listens for game input
+	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
+	 * @version 1.0 
+	 */
 	private class GameboardInterface extends JPanel implements MouseListener {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 		private ToolBar toolBar;
@@ -690,8 +696,7 @@ public class UserInterface extends JFrame {
 	 * ColorSection Page for player to choose token color 
 	 * @author Kai Li, Jayson Rook, Hayden Fogle, Joel Minton 
 	 * @version 1.0 
-	 * */
-
+	 */
 	private class ColorSelectionPage extends JPanel{
 		
 		private static final long serialVersionUID = 1L;
@@ -739,13 +744,17 @@ public class UserInterface extends JFrame {
 		
 	}
 	
+	/**
+	 * Main method for the entire software, which just creates an instance of this UserInterface class
+	 * @param args command-line arguments
+	 */
 	public static void main(String[] args) {
 		// running the graphic processing in a separate thread 
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				UserInterface uf = new UserInterface(); 
+				new UserInterface(); 
 			}
 		});
 	}
